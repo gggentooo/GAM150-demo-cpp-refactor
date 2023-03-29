@@ -19,12 +19,15 @@ void main() {
 
     // initialize point map
     Point_map point_map_0;
+    // initialize shape masses
+    Shape_mass shape_mass_0;
 
     while (!is_window_closed()) {
         update_window();
         clear_background(0);
         // draw points
         point_map_0.draw();
+        shape_mass_0.draw();
     }
 
     return;

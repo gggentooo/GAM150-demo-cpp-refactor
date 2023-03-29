@@ -24,13 +24,43 @@ struct iVec2 {
 	int y;
 };
 
-iVec2 point_map[WINDOW_WIDTH / POINT_DISTANCE][WINDOW_HEIGHT / POINT_DISTANCE];
+struct Point {
+	int shape_no;
+	int point_no;
+	int x;
+	int y;
+};
 
 struct Point_map {
+
 	Point_map();
 	void draw();
 
 private:
+	static constexpr int width_point_count = WINDOW_WIDTH / POINT_DISTANCE + 2;
+	static constexpr int height_point_count = WINDOW_HEIGHT / POINT_DISTANCE + 2;
+	iVec2 point_map[width_point_count][height_point_count]; // 27x18 + padding 1 line each
+
+};
+
+struct Point_in_shape_mass {
+
+	Point_in_shape_mass(int shape_no, int point_no, int x, int y);
+	Point return_numbers();
+
+private:
+	Point point;
+
+};
+
+struct Shape_mass {
+
+	Shape_mass();
+	void draw();
+
+private:
+	static constexpr int points_count = 6;
+	Point points_in_shape[points_count];
 
 };
 
