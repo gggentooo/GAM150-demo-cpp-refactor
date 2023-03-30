@@ -29,27 +29,20 @@ void Point_map::draw() {
 
 }
 
-Point_in_shape_mass::Point_in_shape_mass(int shape_no, int point_no, int x, int y) {
+// -------------------------------------------------------------------------------------
 
-    point.shape_no = shape_no;
-    point.point_no = point_no;
-    point.x = x;
-    point.y = y;
-
-} // rewrite in delegating constructor? 
-
-Point Point_in_shape_mass::return_numbers() {
-    return point;
-}
-
-Shape_mass::Shape_mass() {
+Shape_mass::Shape_mass(std::vector<Point> points, int pointcount, int shapeno) : points_count(pointcount), shape_no(shapeno) {
     // temporary points, later rewrite so that points can be added through constructor
-    points_in_shape[0] = { 0, 0, 0, 0 };
-    points_in_shape[1] = { 0, 1, 3, 2 };
-    points_in_shape[2] = { 0, 2, 5, 3 };
-    points_in_shape[3] = { 0, 3, 5, 5 };
-    points_in_shape[4] = { 0, 4, 4, 7 };
-    points_in_shape[5] = { 0, 2, 2, 3 };
+    for (int i = 0; i < pointcount; ++i) {
+        points_in_shape[i] = {shape_no, i, points[i].x, points[i].y};
+    }
+
+    //points_in_shape[0] = { 0, 0, 0, 0 };
+    //points_in_shape[1] = { 0, 1, 3, 2 };
+    //points_in_shape[2] = { 0, 2, 5, 3 };
+    //points_in_shape[3] = { 0, 3, 5, 5 };
+    //points_in_shape[4] = { 0, 4, 4, 7 };
+    //points_in_shape[5] = { 0, 2, 2, 3 };
 
 }
 

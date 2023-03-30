@@ -2,9 +2,11 @@
 	GAM150 prototype
 	Guyot
 	Hankyung Lee
+	@brief	Vec2, Point & point map, shape mass, point in shape mass
 */
 
 #include <doodle/doodle.hpp>
+#include "game.h"
 
 #define WINDOW_TITLE	"GAM150 Guyot prototype"
 #define WINDOW_WIDTH	1080
@@ -35,6 +37,12 @@ struct Point_map {
 
 	Point_map();
 	void draw();
+	int return_width_point_count() {
+		return width_point_count;
+	}
+	int return_height_point_count() {
+		return height_point_count;
+	}
 
 private:
 	static constexpr int width_point_count = WINDOW_WIDTH / POINT_DISTANCE + 2;
@@ -43,24 +51,15 @@ private:
 
 };
 
-struct Point_in_shape_mass {
-
-	Point_in_shape_mass(int shape_no, int point_no, int x, int y);
-	Point return_numbers();
-
-private:
-	Point point;
-
-};
-
 struct Shape_mass {
 
-	Shape_mass();
+	Shape_mass(std::vector<Point> points, int pointcount, int shapeno);
 	void draw();
 
 private:
-	static constexpr int points_count = 6;
-	Point points_in_shape[points_count];
+	int points_count;
+	int shape_no;
+	std::vector<Point> points_in_shape;
 
 };
 
