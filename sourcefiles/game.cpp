@@ -8,6 +8,7 @@
 #include "game.h"
 #include "filereader.h"
 #include "library.h"
+#include "player.h"
 
 Game::Game() {}
 Game::~Game() {}
@@ -33,7 +34,7 @@ void Game::load_shape_masses() {
 			} // all points with shape # j are now in temp_points
 		}
 
-		printf("temp_points size: %d\n", temp_points.size());
+		// printf("temp_points size: %d\n", temp_points.size());
 		// create new shape initialized with temp_points and push to total shapes vector
 		Shape_mass temp_shape_mass(temp_points, temp_points.size(), j);
 		shape_masses.push_back(temp_shape_mass);
@@ -45,7 +46,7 @@ void Game::load_shape_masses() {
 }
 
 void Game::update() {
-
+	player.update(doodle::DeltaTime);
 }
 
 void Game::draw() {
@@ -57,5 +58,6 @@ void Game::draw() {
 	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();
 	}
+	player.draw();
 
 }

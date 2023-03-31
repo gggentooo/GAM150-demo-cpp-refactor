@@ -11,6 +11,7 @@
 
 #include "library.h"
 #include "filereader.h"
+#include "player.h"
 
 struct Game {
 
@@ -21,6 +22,7 @@ struct Game {
 	void update();
 	void draw();
 
+	Player player;
 	Filereader filereader;
 	Point_map point_map_0;
 	// temp hardcoded points

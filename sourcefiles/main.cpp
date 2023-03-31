@@ -8,7 +8,6 @@
 
 #include <doodle/doodle.hpp>
 
-#include "library.h"
 #include "game.h"
 
 int main() {
