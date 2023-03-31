@@ -53,8 +53,8 @@ void Game::update() {
 void Game::draw() {
 
 	doodle::clear_background(0);
-	// draw points
-	point_map_0.draw();
+	// draw points - really slow. need fix 
+	// point_map_0.draw();
 
 	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();

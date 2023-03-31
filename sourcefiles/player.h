@@ -17,7 +17,7 @@ struct Player {
 
 private:
 	iVec2 position = { 100,100 };
-	static constexpr int speed = 200;
+	static constexpr int speed = 400;
 	Vec2 velocity = { 0, 0 };
 	static constexpr int size = 40;
 

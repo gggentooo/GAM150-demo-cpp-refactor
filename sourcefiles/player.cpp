@@ -17,27 +17,24 @@ void Player::update(double dt) {
 	if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Right))) {
 		velocity.x = speed;
 	}
-	else {
-		velocity.x = 0;
-	}
-	if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Left))) {
+	else if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Left))) {
 		velocity.x = -speed;
 	}
-	else {
+	else if (!doodle::KeyIsPressed || 
+			( doodle::Key != (doodle::KeyboardButtons::Right) && doodle::Key != (doodle::KeyboardButtons::Left) )){
 		velocity.x = 0;
 	}
+
 	if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Up))) {
 		velocity.y = speed;
 	}
-	else {
-		velocity.y = 0;
-	}
-	if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Down))) {
+	else if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Down))) {
 		velocity.y = -speed;
 	}
 	else {
 		velocity.y = 0;
 	}
+
 	position.x += velocity.x * dt;
 	position.y += velocity.y * dt;
 
