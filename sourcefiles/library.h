@@ -6,7 +6,6 @@
 */
 
 #include <doodle/doodle.hpp>
-#include "game.h"
 
 #define WINDOW_TITLE	"GAM150 Guyot prototype"
 #define WINDOW_WIDTH	1080

@@ -46,6 +46,7 @@ void Game::load_shape_masses() {
 }
 
 void Game::update() {
+	puts("Updated - game");
 	player.update(doodle::DeltaTime);
 }
 

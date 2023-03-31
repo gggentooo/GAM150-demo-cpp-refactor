@@ -3,6 +3,8 @@
 	Guyot
 	Hankyung Lee
 */
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "library.h"
 
@@ -15,7 +17,10 @@ struct Player {
 
 private:
 	iVec2 position = { 100,100 };
-	static constexpr int speed = 10;
-	static constexpr int size = 15;
+	static constexpr int speed = 200;
+	Vec2 velocity = { 0, 0 };
+	static constexpr int size = 40;
 
 };
+
+#endif
