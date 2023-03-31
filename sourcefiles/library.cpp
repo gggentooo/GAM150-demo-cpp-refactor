@@ -33,8 +33,10 @@ void Point_map::draw() {
 
 Shape_mass::Shape_mass(std::vector<Point> points, int pointcount, int shapeno) : points_count(pointcount), shape_no(shapeno) {
     // temporary points, later rewrite so that points can be added through constructor
-    for (int i = 0; i < pointcount; ++i) {
-        points_in_shape[i] = {shape_no, i, points[i].x, points[i].y};
+    printf("points_count: %d\nshape_no: %d\n", points_count, shape_no);
+    for (int i = 0; i < points_count; ++i) {
+        printf("%d\n", i);
+        points_in_shape.push_back( points[i] );
     }
 
     //points_in_shape[0] = { 0, 0, 0, 0 };

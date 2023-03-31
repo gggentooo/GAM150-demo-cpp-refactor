@@ -13,7 +13,6 @@ Game::Game() {}
 Game::~Game() {}
 
 void Game::initialize() {
-
 	load_shape_masses();
 	// whatever other stuff to initialize/load 
 }
@@ -30,11 +29,17 @@ void Game::load_shape_masses() {
 
 		for (int i = 0; i < all_shape_points.size(); ++i) { // iterate through points
 			if (all_shape_points[i].shape_no == j) {
-				//temp_points.push_back(all_shape_points[i]);
+				temp_points.push_back(all_shape_points[i]);
 			} // all points with shape # j are now in temp_points
 		}
+
+		printf("temp_points size: %d\n", temp_points.size());
 		// create new shape initialized with temp_points and push to total shapes vector
 		Shape_mass temp_shape_mass(temp_points, temp_points.size(), j);
+		shape_masses.push_back(temp_shape_mass);
+
+		temp_points.clear();
+
 	}
 
 }
@@ -49,7 +54,7 @@ void Game::draw() {
 	// draw points
 	point_map_0.draw();
 
-	for (int i = 0; i < MAX_SHAPE_MASS_COUNT; ++i) {
+	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();
 	}
 
