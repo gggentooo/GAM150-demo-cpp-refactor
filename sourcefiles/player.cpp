@@ -56,8 +56,8 @@ void Player::check_shape_mass_collision(std::vector<Shape_mass> shapes) {
 
 			if (Collide::CircleLine(position, size,
 				current_shape_points[p].position, current_shape_points[p + 1].position)) {
-
 				// is colliding!
+				colliding = true;
 
 			}
 
@@ -69,6 +69,15 @@ void Player::check_shape_mass_collision(std::vector<Shape_mass> shapes) {
 
 void Player::update(double dt, std::vector<Shape_mass> shapes) {
 
+	colliding = false;
+	check_shape_mass_collision(shapes);
+	if (colliding) {
+		color = { 255, 0, 0, 255 };
+	}
+	else {
+		color = { 0, 0, 255, 255 };
+	}
+
 	move(dt);
 	puts("Updated - player");
 
@@ -77,8 +86,9 @@ void Player::update(double dt, std::vector<Shape_mass> shapes) {
 void Player::draw() {
 
 	doodle::push_settings();
-	doodle::set_fill_color(0xFFFFFFFF);
-	doodle::set_outline_color(0x00FFFFFF);
+	doodle::set_outline_width(4);
+	doodle::set_fill_color(color);
+	doodle::set_outline_color({ 255, 255, 255, 255 });
 	doodle::draw_ellipse(position.x, position.y, size, size);
 	doodle::pop_settings();
 

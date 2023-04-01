@@ -19,6 +19,10 @@ struct Player {
 	void draw();
 
 private:
+	doodle::Color color = {0, 0, 255, 255};
+
+	bool colliding = false;
+
 	Math::vec2 position = { 100,100 };
 
 	static constexpr int max_speed = 500;
