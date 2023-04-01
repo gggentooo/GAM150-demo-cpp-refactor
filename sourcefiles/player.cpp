@@ -11,32 +11,44 @@ Player::Player() {}
 
 Player::~Player() {}
 
+void Player::move(double dt) {
+
+	double dx = doodle::get_mouse_x() - position.x;
+	double dy = doodle::get_mouse_y() - position.y;
+
+	if (dx >= brake_margin && velocity.x <= max_speed) {
+		velocity.x += acceleration;
+	}
+	if (dx <= brake_margin && velocity.x >= min_brake_speed) {
+		velocity.x -= acceleration;
+	}
+	if (dx <= -brake_margin && velocity.x >= -max_speed) {
+		velocity.x -= acceleration;
+	}
+	if (dx >= -brake_margin && velocity.x <= -min_brake_speed) {
+		velocity.x += acceleration;
+	}
+	if (dy >= brake_margin && velocity.y <= max_speed) {
+		velocity.y += acceleration;
+	}
+	if (dy <= brake_margin && velocity.y >= min_brake_speed) {
+		velocity.y -= acceleration;
+	}
+	if (dy <= -brake_margin && velocity.y >= -max_speed) {
+		velocity.y -= acceleration;
+	}
+	if (dy >= -brake_margin && velocity.y <= -min_brake_speed) {
+		velocity.y += acceleration;
+	}
+
+	position += velocity * dt;
+
+}
+
 void Player::update(double dt) {
 
+	move(dt);
 	puts("Updated - player");
-	if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Right))) {
-		velocity.x = speed;
-	}
-	else if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Left))) {
-		velocity.x = -speed;
-	}
-	else if (!doodle::KeyIsPressed || 
-			( doodle::Key != (doodle::KeyboardButtons::Right) && doodle::Key != (doodle::KeyboardButtons::Left) )){
-		velocity.x = 0;
-	}
-
-	if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Up))) {
-		velocity.y = speed;
-	}
-	else if (doodle::KeyIsPressed && (doodle::Key == (doodle::KeyboardButtons::Down))) {
-		velocity.y = -speed;
-	}
-	else {
-		velocity.y = 0;
-	}
-
-	position.x += velocity.x * dt;
-	position.y += velocity.y * dt;
 
 }
 

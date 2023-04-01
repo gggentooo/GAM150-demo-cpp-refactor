@@ -39,13 +39,6 @@ Shape_mass::Shape_mass(std::vector<Point> points, int pointcount, int shapeno) :
         points_in_shape.push_back( points[i] );
     }
 
-    //points_in_shape[0] = { 0, 0, 0, 0 };
-    //points_in_shape[1] = { 0, 1, 3, 2 };
-    //points_in_shape[2] = { 0, 2, 5, 3 };
-    //points_in_shape[3] = { 0, 3, 5, 5 };
-    //points_in_shape[4] = { 0, 4, 4, 7 };
-    //points_in_shape[5] = { 0, 2, 2, 3 };
-
 }
 
 void Shape_mass::draw() {
@@ -55,7 +48,7 @@ void Shape_mass::draw() {
 
     doodle::set_outline_color(255, 255, 0, 255);
     doodle::draw_line(points_in_shape[0].x * POINT_DISTANCE, points_in_shape[0].y * POINT_DISTANCE,
-                      points_in_shape[5].x * POINT_DISTANCE, points_in_shape[5].y * POINT_DISTANCE);
+                      points_in_shape[points_count - 1].x * POINT_DISTANCE, points_in_shape[points_count - 1].y * POINT_DISTANCE);
     for (int i = 0; i < points_count - 1; ++i) {
         doodle::draw_line(points_in_shape[i].x * POINT_DISTANCE, points_in_shape[i].y * POINT_DISTANCE,
                           points_in_shape[i + 1].x * POINT_DISTANCE, points_in_shape[i + 1].y * POINT_DISTANCE);

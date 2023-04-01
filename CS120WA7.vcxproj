@@ -19,17 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="sourcefiles\collision.cpp" />
     <ClCompile Include="sourcefiles\filereader.cpp" />
     <ClCompile Include="sourcefiles\game.cpp" />
     <ClCompile Include="sourcefiles\library.cpp" />
     <ClCompile Include="sourcefiles\main.cpp" />
     <ClCompile Include="sourcefiles\player.cpp" />
+    <ClCompile Include="sourcefiles\Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sourcefiles\collision.h" />
     <ClInclude Include="sourcefiles\filereader.h" />
     <ClInclude Include="sourcefiles\game.h" />
     <ClInclude Include="sourcefiles\library.h" />
     <ClInclude Include="sourcefiles\player.h" />
+    <ClInclude Include="sourcefiles\Vec2.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mapdata\map1.txt" />

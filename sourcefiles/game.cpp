@@ -6,7 +6,7 @@
 
 #include <doodle/doodle.hpp>
 #include "game.h"
-#include "filereader.h"
+// #include "filereader.h"
 #include "library.h"
 #include "player.h"
 
@@ -54,11 +54,18 @@ void Game::draw() {
 
 	doodle::clear_background(0);
 	// draw points - really slow. need fix 
-	// point_map_0.draw();
+	//point_map_0.draw();
 
 	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();
 	}
+	 
+	doodle::push_settings(); // mouse cross
+	doodle::set_outline_color(220, 0, 255);
+	doodle::draw_line(doodle::get_mouse_x(), 0, doodle::get_mouse_x(), WINDOW_HEIGHT);
+	doodle::draw_line(0, doodle::get_mouse_y(), WINDOW_WIDTH, doodle::get_mouse_y());
+	doodle::pop_settings();
+
 	player.draw();
 
 }
