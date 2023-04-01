@@ -48,22 +48,28 @@ void Player::move(double dt) {
 
 void Player::check_shape_mass_collision(std::vector<Shape_mass> shapes) {
 
-	for (int s = 0; s < shapes.size(); ++s) { // iterate through shape masses
-
-		std::vector<Point> current_shape_points = shapes[s].return_points_in_shape();
-
-		for (int p = 0; p < shapes[s].return_points_count() - 1; ++p) { // iterate through points, in the shape mass
-
-			if (Collide::CircleLine(position, size,
-				current_shape_points[p].position, current_shape_points[p + 1].position)) {
-				// is colliding!
-				colliding = true;
-
-			}
-
-		}
-
+	if (Collide::CircleLine(position, size, { 12, 8 }, { 8, 15 })) {
+		colliding = true;
+		puts("Collide!");
 	}
+
+	//for (int s = 0; s < shapes.size(); ++s) { // iterate through shape masses
+
+	//	std::vector<Point> current_shape_points = shapes[s].return_points_in_shape();
+
+	//	for (int p = 0; p < shapes[s].return_points_count() - 1; ++p) { // iterate through points, in the shape mass
+
+	//		if (Collide::CircleLine(position, size,
+	//			current_shape_points[p].position, current_shape_points[p + 1].position)) {
+	//			// is colliding!
+	//			puts("Collide!");
+	//			colliding = true;
+
+	//		}
+
+	//	}
+
+	//}
 
 }
 
@@ -79,7 +85,7 @@ void Player::update(double dt, std::vector<Shape_mass> shapes) {
 	}
 
 	move(dt);
-	puts("Updated - player");
+	// puts("Updated - player");
 
 }
 

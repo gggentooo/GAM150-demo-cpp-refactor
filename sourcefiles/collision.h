@@ -11,7 +11,7 @@
 
 namespace Collide {
 
-	bool CircleLine(Math::vec2 center, int r, Math::vec2 point1, Math::vec2 point2);
+	bool CircleLine(Math::vec2 center, int d, Math::vec2 point1, Math::vec2 point2);
 
 }
 

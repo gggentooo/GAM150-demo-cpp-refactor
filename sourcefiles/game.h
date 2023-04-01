@@ -39,7 +39,7 @@ struct Game {
 											{2, 2, 7, point_map_0.return_height_point_count()},
 											{2, 3, 5, 15}, {2, 4, 4, 8}*/
 		points1._00, /*points1._01, points1._02,
-		points1._03, */points1._04, points1._05
+		points1._03, points1._04,*/ points1._05
 	
 	};
 	std::vector<Shape_mass> shape_masses;

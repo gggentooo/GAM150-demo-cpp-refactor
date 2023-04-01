@@ -34,9 +34,9 @@ struct Point_map {
 	}
 
 private:
-	static constexpr int width_point_count = WINDOW_WIDTH / POINT_DISTANCE + 2;
-	static constexpr int height_point_count = WINDOW_HEIGHT / POINT_DISTANCE + 2;
-	Math::ivec2 point_map[width_point_count][height_point_count]; // 27x18 + padding 1 line each = 29x20
+	static constexpr int width_point_count = WINDOW_WIDTH / POINT_DISTANCE;
+	static constexpr int height_point_count = WINDOW_HEIGHT / POINT_DISTANCE;
+	Math::ivec2 point_map[width_point_count][height_point_count]; // 27x18, no padding 
 
 };
 
