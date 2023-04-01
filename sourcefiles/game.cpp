@@ -46,8 +46,10 @@ void Game::load_shape_masses() {
 }
 
 void Game::update() {
+
 	puts("Updated - game");
-	player.update(doodle::DeltaTime);
+	player.update(doodle::DeltaTime, shape_masses);
+
 }
 
 void Game::draw() {
@@ -61,7 +63,7 @@ void Game::draw() {
 	}
 	 
 	doodle::push_settings(); // mouse cross
-	doodle::set_outline_color(220, 0, 255);
+	doodle::set_outline_color(255, 0, 220);
 	doodle::draw_line(doodle::get_mouse_x(), 0, doodle::get_mouse_x(), WINDOW_HEIGHT);
 	doodle::draw_line(0, doodle::get_mouse_y(), WINDOW_WIDTH, doodle::get_mouse_y());
 	doodle::pop_settings();

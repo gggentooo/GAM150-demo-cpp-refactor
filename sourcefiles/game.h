@@ -12,6 +12,7 @@
 #include "library.h"
 // #include "filereader.h"
 #include "player.h"
+#include "Points1.h"
 
 struct Game {
 
@@ -25,21 +26,29 @@ struct Game {
 	Player player;
 	// Filereader filereader;
 	Point_map point_map_0;
+	Points1 points1;
+
 	// temp hardcoded points
-	std::vector<Point> all_shape_points = { {0, 0, 0, 0}, {0, 1, point_map_0.return_width_point_count(), 0}, 
-											{0, 2, point_map_0.return_width_point_count(), point_map_0.return_height_point_count()},
-											{0, 3, point_map_0.return_width_point_count() - 4, point_map_0.return_height_point_count() - 4}, 
-											{0, 4, 22, 8}, {0, 5, 10, 4},
+	std::vector<Point> all_shape_points = { /*{0, 0, {0, 0} }, { 0, 1, {point_map_0.return_width_point_count(), 0} },
+											{0, 2, {point_map_0.return_width_point_count(), point_map_0.return_height_point_count()} },
+											{0, 3, {point_map_0.return_width_point_count() - 4, point_map_0.return_height_point_count() - 4} },
+											{0, 4, {22, 8} }, {0, 5,{ 10, 4} }
 											{1, 0, 12, 8}, {1, 1, 16, 10}, {1, 2, 18, 12},
 											{1, 3, 19, 13}, {1, 4, 16, 12}, {1, 5, 8, 15},
 											{2, 0, 0, 0}, {2, 1, 0, point_map_0.return_height_point_count()},
 											{2, 2, 7, point_map_0.return_height_point_count()},
-											{2, 3, 5, 15}, {2, 4, 4, 8} };
+											{2, 3, 5, 15}, {2, 4, 4, 8}*/
+		points1._0, points1._1, points1._2,
+		points1._3, points1._4, points1._5
+	
+	};
 	std::vector<Shape_mass> shape_masses;
 
 	bool did_read_map_file = false;
+
 private:
-	int shape_count = 3; // also temp hardcoded value
+	int shape_count = 1; // also temp hardcoded value
+
 };
 
 #endif

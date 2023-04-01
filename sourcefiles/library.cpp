@@ -47,11 +47,11 @@ void Shape_mass::draw() {
     doodle::apply_translate(-40, -40);
 
     doodle::set_outline_color(255, 255, 0, 255);
-    doodle::draw_line(points_in_shape[0].x * POINT_DISTANCE, points_in_shape[0].y * POINT_DISTANCE,
-                      points_in_shape[points_count - 1].x * POINT_DISTANCE, points_in_shape[points_count - 1].y * POINT_DISTANCE);
+    doodle::draw_line(points_in_shape[0].position.x * POINT_DISTANCE, points_in_shape[0].position.y * POINT_DISTANCE,
+                      points_in_shape[points_count - 1].position.x * POINT_DISTANCE, points_in_shape[points_count - 1].position.y * POINT_DISTANCE);
     for (int i = 0; i < points_count - 1; ++i) {
-        doodle::draw_line(points_in_shape[i].x * POINT_DISTANCE, points_in_shape[i].y * POINT_DISTANCE,
-                          points_in_shape[i + 1].x * POINT_DISTANCE, points_in_shape[i + 1].y * POINT_DISTANCE);
+        doodle::draw_line(points_in_shape[i].position.x * POINT_DISTANCE, points_in_shape[i].position.y * POINT_DISTANCE,
+                          points_in_shape[i + 1].position.x * POINT_DISTANCE, points_in_shape[i + 1].position.y * POINT_DISTANCE);
     }
     
     doodle::apply_translate(40, 40);

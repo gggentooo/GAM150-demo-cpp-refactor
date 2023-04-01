@@ -33,6 +33,7 @@
     <ClInclude Include="sourcefiles\game.h" />
     <ClInclude Include="sourcefiles\library.h" />
     <ClInclude Include="sourcefiles\player.h" />
+    <ClInclude Include="sourcefiles\Points1.h" />
     <ClInclude Include="sourcefiles\Vec2.h" />
   </ItemGroup>
   <ItemGroup>

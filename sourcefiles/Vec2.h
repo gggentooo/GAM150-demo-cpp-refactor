@@ -33,9 +33,9 @@ namespace Math {
 
         vec2 operator/(double divisor);
         vec2& operator/=(double divisor);
-    };
 
-    vec2 operator*(double scale, const vec2& v);
+        double magnitude();
+    };
 
     struct ivec2 {
         int x{ 0 };
@@ -64,6 +64,12 @@ namespace Math {
 
         vec2 operator*(double scale);
         vec2 operator/(double divisor);
+
+        int magnitude();
     };
+
+    double cross_product(vec2, vec2);
+    double dot_product(vec2, vec2);
+    double angle_between(vec2, vec2);
 
 }
