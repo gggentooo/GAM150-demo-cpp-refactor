@@ -124,6 +124,10 @@ Math::vec2 Math::ivec2::operator/(double divisor) {
     return { x / divisor, y / divisor };
 }
 
+int Math::ivec2::magnitude() {
+    return sqrt(pow(x, 2) + pow(y, 2));
+}
+
 /* operations------------------------------------------ */
 
 double Math::cross_product(vec2 v1, vec2 v2) {

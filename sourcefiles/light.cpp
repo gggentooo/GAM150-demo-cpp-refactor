@@ -6,14 +6,32 @@
 
 #include "light.h"
 #include <doodle/drawing.hpp>
+#include "collision.h"
 
-void Light::check_shape_mass_collision(std::vector<Shape_mass>*, std::vector<Point>* collide_points) {
+void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
+
+	for (int s = 0; s < shapes->size(); ++s) {
+		for (int p = 0; p < (*shapes)[s].return_points_count() - 1; ++p) {
+			if (Collide::CircleLine(	&position, 
+										size,
+										&((*shapes)[s].return_points_in_shape()[p].position), 
+										&((*shapes)[s].return_points_in_shape()[p + 1].position),
+										collide_points)
+				|| Collide::CircleLine(	&position, 
+										size, // last point - first point
+										&((*shapes)[s].return_points_in_shape()[0].position),
+										&((*shapes)[s].return_points_in_shape()[(*shapes)[s].return_points_count() - 1].position),
+										collide_points)) {
+
+			}
+		}
+	}
 
 }
 
-void Light::update(Math::vec2 pos, std::vector<Shape_mass>* shapes, std::vector<Point>* collide_points) {
+void Light::update(Math::vec2* pos, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
 
-	position = pos;
+	position = *pos;
 
 }
 

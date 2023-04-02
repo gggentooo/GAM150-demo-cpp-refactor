@@ -1,7 +1,13 @@
+/*
+	GAM150 prototype
+	Guyot
+	Hankyung Lee
+*/
+
 #ifndef POINTS1_H
 #define POINTS1_h
 
-#include "library.h"
+#include "../sourcefiles/library.h"
 
 struct Points1 {
 

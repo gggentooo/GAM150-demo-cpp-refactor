@@ -12,7 +12,7 @@
 #include "library.h"
 // #include "filereader.h"
 #include "player.h"
-#include "Points1.h"
+#include "../mapdata/Points1.h"
 
 struct Game {
 
@@ -42,7 +42,7 @@ struct Game {
 		points1._03, points1._04, points1._05
 	
 	};
-	std::vector<Point> collide_points;
+	std::vector<Math::vec2> collide_points;
 	std::vector<Shape_mass> shape_masses;
 
 	bool did_read_map_file = false;

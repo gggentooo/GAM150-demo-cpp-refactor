@@ -57,7 +57,7 @@ void Game::draw() {
 
 	doodle::clear_background(0);
 	// draw points - really slow. need fix 
-	//point_map_0.draw();
+	// point_map_0.draw();
 
 	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();
@@ -70,5 +70,13 @@ void Game::draw() {
 	doodle::pop_settings();
 
 	player.draw();
+
+	doodle::push_settings();
+	doodle::set_outline_color(255, 255, 0);
+	doodle::set_fill_color(255, 255, 0);
+	for (int i = 0; i < collide_points.size(); ++i) {
+		doodle::draw_ellipse(collide_points[i].x, collide_points[i].y, 2, 2);
+	}
+	doodle::pop_settings();
 
 }

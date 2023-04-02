@@ -15,8 +15,8 @@ struct Player {
 	~Player();
 
 	void move(double dt);
-	void check_shape_mass_collision(std::vector<Shape_mass>*, std::vector<Point>* collide_points);
-	void update(double dt, std::vector<Shape_mass>* shapes, std::vector<Point>* collide_points);
+	void check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points);
+	void update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points);
 	void draw();
 
 	Light light;

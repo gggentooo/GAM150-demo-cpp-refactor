@@ -28,7 +28,13 @@ bool Collide::LinePoint(Math::vec2* point_p, Math::vec2* line_p1_p, Math::vec2* 
 
 }
 
-bool Collide::CircleLine(const Math::vec2* center_p, int diameter, const Math::vec2* point1_p, const Math::vec2* point2_p) {
+bool Collide::CircleLine(	const Math::vec2* center_p, 
+							int diameter, 
+							const Math::vec2* point1_p, 
+							const Math::vec2* point2_p,
+							std::vector<Math::vec2>* collide_points) {
+
+	unsigned char intersecting_points_count = 0;
 
 	Math::vec2 center = *center_p, point1_not_multiplied = *point1_p, point2_not_multiplied = *point2_p;
 	Math::vec2 point1 = point1_not_multiplied * POINT_DISTANCE;
@@ -43,22 +49,39 @@ bool Collide::CircleLine(const Math::vec2* center_p, int diameter, const Math::v
 	double dot = ((center.x - point1.x) * (point2.x - point1.x) + (center.y - point1.y) * (point2.y - point1.y)) / pow(line_len, 2);
 	Math::vec2 closest_point = { point1.x + dot * (point2.x - point1.x), point1.y + dot * (point2.y - point1.y) };
 
-	doodle::push_settings();
-	doodle::set_fill_color(0, 0, 0, 0);
-	doodle::set_outline_color(255, 0, 255, 255);
-	doodle::draw_ellipse(closest_point.x, closest_point.y, 4, 4);
-	doodle::pop_settings();
-
 	if (!Collide::LinePoint(&closest_point, &point1, &point2)) {
 		return false;
 	}
 
 	double dist_center_line = sqrt(pow(center.x - closest_point.x, 2) + pow(center.y - closest_point.y, 2));
 
-	if (dist_center_line <= diameter / 2) {
-		return true;
+	if (dist_center_line < diameter / 2) {
+		intersecting_points_count = 2;
+	}
+	if (dist_center_line == diameter / 2) {
+		intersecting_points_count = 1;
 	}
 
-	return false;
+	//@todo: push intersecting points to corresponding vector 
+
+	switch (intersecting_points_count) {
+
+	case 0:
+		return false;
+
+	case 1:
+		collide_points->push_back(closest_point);
+		return true;
+
+	case 2:
+		double intersect_trigslope = sqrt( pow(diameter/2, 2) - pow(dist_center_line, 2) );
+		double intersect_angle = Math::angle_between(vec_p1_p2, {1, 0});
+		double intersect_dx = intersect_trigslope * cos(intersect_angle);
+		double intersect_dy = intersect_trigslope * sin(intersect_angle);
+		collide_points->push_back({ closest_point.x + intersect_dx, closest_point.y + intersect_dy });
+		collide_points->push_back({ closest_point.x - intersect_dx, closest_point.y - intersect_dy });
+		return true;
+
+	}
 
 }

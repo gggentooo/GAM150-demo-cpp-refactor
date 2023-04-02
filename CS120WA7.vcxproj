@@ -29,6 +29,7 @@
     <ClCompile Include="sourcefiles\Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mapdata\Points1.h" />
     <ClInclude Include="sourcefiles\collision.h" />
     <ClInclude Include="sourcefiles\filereader.h" />
     <ClInclude Include="sourcefiles\game.h" />
