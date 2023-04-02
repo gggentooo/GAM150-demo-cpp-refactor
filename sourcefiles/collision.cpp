@@ -60,7 +60,7 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 
 	// check if either point1 or point2 is within the circle
 	if (Collide::CirclePoint(center_p, diameter, point1_p) || Collide::CirclePoint(center_p, diameter, point2_p)) {
-		intersecting_points_count = 1;
+		// may have either 0, 1, or (maybe even) 2 intersecting points
 		line_end_in_circle = true;
 	}
 
@@ -90,33 +90,8 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 
 	printf("%d\n", intersecting_points_count);
 
-	switch (intersecting_points_count) {
+	if (line_end_in_circle) {
 
-	case 0:
-		return false;
-
-	case 1:
-		if (!line_end_in_circle) {
-			collide_points->push_back(closest_point);
-			return true;
-		}
-		else {
-			double intersect_trigslope = sqrt(pow(diameter / 2, 2) - pow(dist_center_line, 2));
-			double intersect_angle = Math::angle_between(vec_p1_p2, { 1, 0 });
-			double intersect_dx = intersect_trigslope * cos(intersect_angle);
-			double intersect_dy = intersect_trigslope * sin(intersect_angle);
-			Math::vec2 maybe_intersect_0 = { closest_point.x + intersect_dx, closest_point.y + intersect_dy };
-			Math::vec2 maybe_intersect_1 = { closest_point.x - intersect_dx, closest_point.y - intersect_dy };
-			if (Collide::LinePoint(&maybe_intersect_0, (Math::vec2*)point1_p, (Math::vec2*)point2_p)) {
-				collide_points->push_back(maybe_intersect_0);
-			}
-			if (Collide::LinePoint(&maybe_intersect_1, (Math::vec2*)point1_p, (Math::vec2*)point2_p)) {
-				collide_points->push_back(maybe_intersect_1);
-			}
-			return true;
-		}
-
-	case 2:
 		double intersect_trigslope = sqrt(pow(diameter / 2, 2) - pow(dist_center_line, 2));
 		double intersect_angle = Math::angle_between(vec_p1_p2, { 1, 0 });
 		double intersect_dx = intersect_trigslope * cos(intersect_angle);
@@ -129,6 +104,28 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 		if (Collide::LinePoint(&maybe_intersect_1, (Math::vec2*)point1_p, (Math::vec2*)point2_p)) {
 			collide_points->push_back(maybe_intersect_1);
 		}
+		return true;
+
+	}
+
+	switch (intersecting_points_count) {
+
+	case 0:
+		return false;
+
+	case 1:
+		collide_points->push_back(closest_point);
+		return true;
+
+	case 2:
+		double intersect_trigslope = sqrt(pow(diameter / 2, 2) - pow(dist_center_line, 2));
+		double intersect_angle = Math::angle_between(vec_p1_p2, { 1, 0 });
+		double intersect_dx = intersect_trigslope * cos(intersect_angle);
+		double intersect_dy = intersect_trigslope * sin(intersect_angle);
+		Math::vec2 maybe_intersect_0 = { closest_point.x + intersect_dx, closest_point.y + intersect_dy };
+		Math::vec2 maybe_intersect_1 = { closest_point.x - intersect_dx, closest_point.y - intersect_dy };
+		collide_points->push_back(maybe_intersect_0);
+		collide_points->push_back(maybe_intersect_1);
 		return true;
 	}
 }
