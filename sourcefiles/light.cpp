@@ -22,7 +22,7 @@ void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vec
 										&((*shapes)[s].return_points_in_shape()[0].position),
 										&((*shapes)[s].return_points_in_shape()[(*shapes)[s].return_points_count() - 1].position),
 										collide_points)) {
-
+				colliding = true;
 			}
 		}
 	}
@@ -31,6 +31,8 @@ void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vec
 
 void Light::update(Math::vec2* pos, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
 
+	colliding = false;
+	check_shape_mass_collision(shapes, collide_points);
 	position = *pos;
 
 }

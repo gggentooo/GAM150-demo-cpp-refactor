@@ -72,10 +72,11 @@ void Game::draw() {
 	player.draw();
 
 	doodle::push_settings();
-	doodle::set_outline_color(255, 255, 0);
-	doodle::set_fill_color(255, 255, 0);
+	doodle::set_outline_color(255, 255, 255);
+	doodle::set_outline_width(7);
+	doodle::set_fill_color(255, 0, 0);
 	for (int i = 0; i < collide_points.size(); ++i) {
-		doodle::draw_ellipse(collide_points[i].x, collide_points[i].y, 2, 2);
+		doodle::draw_ellipse(collide_points[i].x, collide_points[i].y, 10, 10);
 	}
 	doodle::pop_settings();
 

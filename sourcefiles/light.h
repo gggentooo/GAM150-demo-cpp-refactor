@@ -29,6 +29,8 @@ private:
 	enum LightColor lightcolor = White;
 	doodle::Color color = {255, 255, 255, 40};
 
+	bool colliding = false;
+
 };
 
 #endif
