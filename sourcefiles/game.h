@@ -38,10 +38,11 @@ struct Game {
 											{2, 0, 0, 0}, {2, 1, 0, point_map_0.return_height_point_count()},
 											{2, 2, 7, point_map_0.return_height_point_count()},
 											{2, 3, 5, 15}, {2, 4, 4, 8}*/
-		points1._00, /*points1._01, points1._02,
-		points1._03, points1._04,*/ points1._05
+		points1._00, points1._01, points1._02,
+		points1._03, points1._04, points1._05
 	
 	};
+	std::vector<Point> collide_points;
 	std::vector<Shape_mass> shape_masses;
 
 	bool did_read_map_file = false;

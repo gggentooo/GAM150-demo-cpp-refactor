@@ -46,12 +46,36 @@ void Player::move(double dt) {
 
 }
 
-void Player::check_shape_mass_collision(std::vector<Shape_mass> shapes) {
+void Player::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vector<Point>* collide_points) {
 
-	if (Collide::CircleLine(position, size, { 12, 8 }, { 8, 15 })) {
-		colliding = true;
-		puts("Collide!");
+	// iterate through shapes
+	// check for collision
+	// collide_points.push_back(points where player and line intersect)
+
+	for (int s = 0; s < shapes->size(); ++s) {
+
+		for (int p = 0; p < (*shapes)[s].return_points_count() - 1; ++p) {
+
+			if (Collide::CircleLine(&position, size, 
+				&((*shapes)[s].return_points_in_shape()[p].position), &((*shapes)[s].return_points_in_shape()[p + 1].position))
+				|| Collide::CircleLine(&position, size, // last point - first point
+					&((*shapes)[s].return_points_in_shape()[0].position), 
+					&((*shapes)[s].return_points_in_shape()[(*shapes)[s].return_points_count() - 1].position))) {
+
+				colliding = true;
+
+			}
+
+		}
+
 	}
+
+	//Math::vec2 point1 = { 12, 8 };
+	//Math::vec2 point2 = { 8, 15 };
+
+	//if (Collide::CircleLine(&position, size, &point1, &point2)) {
+	//	colliding = true;
+	//}
 
 	//for (int s = 0; s < shapes.size(); ++s) { // iterate through shape masses
 
@@ -73,10 +97,10 @@ void Player::check_shape_mass_collision(std::vector<Shape_mass> shapes) {
 
 }
 
-void Player::update(double dt, std::vector<Shape_mass> shapes) {
+void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Point>* collide_points) {
 
 	colliding = false;
-	check_shape_mass_collision(shapes);
+	check_shape_mass_collision(shapes, collide_points);
 	if (colliding) {
 		color = { 255, 0, 0, 255 };
 	}

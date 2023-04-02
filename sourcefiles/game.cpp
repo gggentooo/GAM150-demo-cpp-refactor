@@ -47,8 +47,9 @@ void Game::load_shape_masses() {
 
 void Game::update() {
 
+	collide_points.clear();
 	// puts("Updated - game");
-	player.update(doodle::DeltaTime, shape_masses);
+	player.update(doodle::DeltaTime, &shape_masses, &collide_points);
 
 }
 

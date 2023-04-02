@@ -23,6 +23,7 @@
     <ClCompile Include="sourcefiles\filereader.cpp" />
     <ClCompile Include="sourcefiles\game.cpp" />
     <ClCompile Include="sourcefiles\library.cpp" />
+    <ClCompile Include="sourcefiles\light.cpp" />
     <ClCompile Include="sourcefiles\main.cpp" />
     <ClCompile Include="sourcefiles\player.cpp" />
     <ClCompile Include="sourcefiles\Vec2.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="sourcefiles\filereader.h" />
     <ClInclude Include="sourcefiles\game.h" />
     <ClInclude Include="sourcefiles\library.h" />
+    <ClInclude Include="sourcefiles\light.h" />
     <ClInclude Include="sourcefiles\player.h" />
     <ClInclude Include="sourcefiles\Points1.h" />
     <ClInclude Include="sourcefiles\Vec2.h" />

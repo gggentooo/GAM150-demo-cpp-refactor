@@ -8,15 +8,18 @@
 #define PLAYER_H
 
 #include "library.h"
+#include "light.h"
 
 struct Player {
 	Player();
 	~Player();
 
 	void move(double dt);
-	void check_shape_mass_collision(std::vector<Shape_mass>);
-	void update(double dt, std::vector<Shape_mass> shapes);
+	void check_shape_mass_collision(std::vector<Shape_mass>*, std::vector<Point>* collide_points);
+	void update(double dt, std::vector<Shape_mass>* shapes, std::vector<Point>* collide_points);
 	void draw();
+
+	Light light;
 
 private:
 	doodle::Color color = {0, 0, 255, 255};
