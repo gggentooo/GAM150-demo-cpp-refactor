@@ -9,6 +9,22 @@
 #include <doodle/drawing.hpp> // temporary, for testing
 #include "library.h"
 
+bool Collide::CirclePoint(const Math::vec2* center,
+	int diameter,
+	const Math::vec2* point) 
+{
+	double dx = center->x - point->x * POINT_DISTANCE;
+	double dy = center->y - point->y * POINT_DISTANCE;
+	double dist = sqrt(pow(dx, 2) + (dy, 2));
+
+	if (dist <= diameter / 2) {
+		return true;
+	}
+
+	return false;
+
+}
+
 bool Collide::LinePoint(Math::vec2* point_p, Math::vec2* line_p1_p, Math::vec2* line_p2_p) {
 
 	Math::vec2 point = *point_p, line_p1 = *line_p1_p, line_p2 = *line_p2_p;
@@ -32,13 +48,21 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 							int diameter, 
 							const Math::vec2* point1_p, 
 							const Math::vec2* point2_p,
-							std::vector<Math::vec2>* collide_points) {
-
+							std::vector<Math::vec2>* collide_points)
+{
 	unsigned char intersecting_points_count = 0;
+
+	bool line_end_in_circle = false;
 
 	Math::vec2 center = *center_p, point1_not_multiplied = *point1_p, point2_not_multiplied = *point2_p;
 	Math::vec2 point1 = point1_not_multiplied * POINT_DISTANCE;
 	Math::vec2 point2 = point2_not_multiplied * POINT_DISTANCE; // multiply with POINT_DISTANCE to get raw coords
+
+	// check if either point1 or point2 is within the circle
+	if (Collide::CirclePoint(center_p, diameter, point1_p) || Collide::CirclePoint(center_p, diameter, point2_p)) {
+		intersecting_points_count = 1;
+		line_end_in_circle = true;
+	}
 
 	Math::vec2 vec_p1_c = center - point1; // vector from point1 to center
 	Math::vec2 vec_p1_p2 = point2 - point1; // vector from point2 to center
@@ -62,7 +86,7 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 		intersecting_points_count = 1;
 	}
 
-	//@todo: push intersecting points to corresponding vector 
+	// push intersecting points to corresponding vector 
 
 	printf("%d\n", intersecting_points_count);
 
@@ -72,8 +96,21 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 		return false;
 
 	case 1:
-		collide_points->push_back(closest_point);
-		return true;
+		if (!line_end_in_circle) {
+			collide_points->push_back(closest_point);
+			return true;
+		}
+		else {
+			double intersect_trigslope = sqrt(pow(diameter / 2, 2) - pow(dist_center_line, 2));
+			double intersect_angle = Math::angle_between(vec_p1_p2, { 1, 0 });
+			double intersect_dx = intersect_trigslope * cos(intersect_angle);
+			double intersect_dy = intersect_trigslope * sin(intersect_angle);
+			Math::vec2 maybe_intersect_0 = { closest_point.x + intersect_dx, closest_point.y + intersect_dy };
+			Math::vec2 maybe_intersect_1 = { closest_point.x - intersect_dx, closest_point.y - intersect_dy };
+			
+			//if (Collide::LinePoint(&maybe_intersect_0, ))
+			return true;
+		}
 
 	case 2:
 		double intersect_trigslope = sqrt( pow(diameter/2, 2) - pow(dist_center_line, 2) );
