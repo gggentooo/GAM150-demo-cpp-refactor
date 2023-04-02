@@ -64,6 +64,8 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 
 	//@todo: push intersecting points to corresponding vector 
 
+	printf("%d\n", intersecting_points_count);
+
 	switch (intersecting_points_count) {
 
 	case 0:

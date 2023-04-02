@@ -80,6 +80,7 @@ void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math
 	}
 
 	move(dt);
+
 	light.update(&position, shapes, collide_points);
 	// puts("Updated - player");
 
