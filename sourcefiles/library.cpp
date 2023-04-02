@@ -12,7 +12,7 @@ Point_map::Point_map() {
 
     for (int i = 0; i < width_point_count; ++i) {
         for (int j = 0; j < height_point_count; ++j) {
-            this->point_map[i][j] = { i,j };
+            // this->point_map[i][j] = { i,j };
         }
     }
 

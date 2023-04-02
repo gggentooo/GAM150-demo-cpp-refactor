@@ -11,7 +11,7 @@
 #define WINDOW_TITLE	"GAM150 Guyot prototype"
 #define WINDOW_WIDTH	1280
 #define WINDOW_HEIGHT	720
-#define POINT_DISTANCE	40
+#define POINT_DISTANCE	1
 
 #ifndef LIBRARY_H
 #define LIBRARY_H
@@ -36,7 +36,7 @@ struct Point_map {
 private:
 	static constexpr int width_point_count = WINDOW_WIDTH / POINT_DISTANCE;
 	static constexpr int height_point_count = WINDOW_HEIGHT / POINT_DISTANCE;
-	Math::ivec2 point_map[width_point_count][height_point_count]; // 27x18, no padding 
+	// Math::ivec2 point_map[width_point_count][height_point_count]; // 27x18, no padding 
 
 };
 
