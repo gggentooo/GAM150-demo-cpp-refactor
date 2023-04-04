@@ -87,9 +87,14 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 	Math::vec2 maybe_intersect_1 = { closest_point.x - intersect_dx, closest_point.y - intersect_dy };
 	if (Collide::LinePoint(&maybe_intersect_0, &point1, &point2)) {
 		collide_points->push_back(maybe_intersect_0);
+		++intersecting_points_count;
 	}
 	if (Collide::LinePoint(&maybe_intersect_1, &point1, &point2)) {
 		collide_points->push_back(maybe_intersect_1);
+		++intersecting_points_count;
+	}
+	if (intersecting_points_count == 0) {
+		return false; // if somehow code made it all the way down here but has no intersecting points, not colliding
 	}
 	return true;
 
