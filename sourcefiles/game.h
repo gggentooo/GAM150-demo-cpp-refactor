@@ -24,6 +24,7 @@ struct Game {
 	void draw();
 
 	Player player;
+	Light light;
 	// Filereader filereader;
 	// Point_map point_map_0;
 	Points1 points1;

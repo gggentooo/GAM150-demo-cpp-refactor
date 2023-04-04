@@ -20,7 +20,7 @@ enum LightColor {
 struct Light {
 
 	void check_shape_mass_collision(std::vector<Shape_mass>*, std::vector<Math::vec2>* collide_points);
-	void update(Math::vec2* pos, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points);
+	void update(Math::vec2 pos, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points);
 	void draw();
 
 private:

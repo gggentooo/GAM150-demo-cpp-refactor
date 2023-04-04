@@ -12,7 +12,7 @@ Point_map::Point_map() {
 
     for (int i = 0; i < width_point_count; ++i) {
         for (int j = 0; j < height_point_count; ++j) {
-            // this->point_map[i][j] = { i,j };
+            // this->point_map[i][j] = { i,j }; // OUTDATED NOT RAW COORDS 
         }
     }
 
@@ -23,7 +23,7 @@ void Point_map::draw() {
     doodle::set_fill_color(255, 0, 0, 255);
     for (int i = 0; i < width_point_count; ++i) {
         for (int j = 0; j < height_point_count; ++j) {
-            doodle::draw_ellipse(i * POINT_DISTANCE, j * POINT_DISTANCE, 6, 6);
+            doodle::draw_ellipse(i, j, 6, 6);
         }
     }
 
@@ -46,11 +46,11 @@ void Shape_mass::draw() {
     doodle::push_settings();
 
     doodle::set_outline_color(255, 255, 0, 255);
-    doodle::draw_line(points_in_shape[0].position.x * POINT_DISTANCE, points_in_shape[0].position.y * POINT_DISTANCE,
-                      points_in_shape[points_count - 1].position.x * POINT_DISTANCE, points_in_shape[points_count - 1].position.y * POINT_DISTANCE);
+    doodle::draw_line(points_in_shape[0].position.x, points_in_shape[0].position.y,
+                      points_in_shape[points_count - 1].position.x, points_in_shape[points_count - 1].position.y);
     for (int i = 0; i < points_count - 1; ++i) {
-        doodle::draw_line(points_in_shape[i].position.x * POINT_DISTANCE, points_in_shape[i].position.y * POINT_DISTANCE,
-                          points_in_shape[i + 1].position.x * POINT_DISTANCE, points_in_shape[i + 1].position.y * POINT_DISTANCE);
+        doodle::draw_line(points_in_shape[i].position.x, points_in_shape[i].position.y,
+                          points_in_shape[i + 1].position.x, points_in_shape[i + 1].position.y);
     }
     doodle::pop_settings();
 

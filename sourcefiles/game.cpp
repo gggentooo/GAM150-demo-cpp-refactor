@@ -50,6 +50,7 @@ void Game::update() {
 	collide_points.clear();
 	// puts("Updated - game");
 	player.update(doodle::DeltaTime, &shape_masses, &collide_points);
+	// light.update(player.getposition(), &shape_masses, &collide_points);
 
 }
 
@@ -63,13 +64,14 @@ void Game::draw() {
 		shape_masses[i].draw();
 	}
 	 
-	doodle::push_settings(); // mouse cross
-	doodle::set_outline_color(255, 0, 220);
-	doodle::draw_line(doodle::get_mouse_x(), 0, doodle::get_mouse_x(), WINDOW_HEIGHT);
-	doodle::draw_line(0, doodle::get_mouse_y(), WINDOW_WIDTH, doodle::get_mouse_y());
-	doodle::pop_settings();
+	//doodle::push_settings(); // mouse cross
+	//doodle::set_outline_color(255, 0, 220);
+	//doodle::draw_line(doodle::get_mouse_x(), 0, doodle::get_mouse_x(), WINDOW_HEIGHT);
+	//doodle::draw_line(0, doodle::get_mouse_y(), WINDOW_WIDTH, doodle::get_mouse_y());
+	//doodle::pop_settings();
 
 	player.draw();
+	// light.draw();
 
 	doodle::push_settings();
 	doodle::set_outline_color(255, 255, 255);

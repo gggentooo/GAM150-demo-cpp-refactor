@@ -29,11 +29,11 @@ void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vec
 
 }
 
-void Light::update(Math::vec2* pos, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
+void Light::update(Math::vec2 pos, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
 
 	colliding = false;
 	check_shape_mass_collision(shapes, collide_points);
-	position = *pos;
+	position = pos;
 
 }
 
