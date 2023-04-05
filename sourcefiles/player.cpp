@@ -71,17 +71,18 @@ void Player::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::ve
 void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
 
 	colliding = false;
+	move(dt);
 	check_shape_mass_collision(shapes, collide_points);
 	if (colliding) {
 		color = { 255, 0, 0, 255 };
+		position = prev_position;
 	}
 	else {
 		color = { 0, 0, 255, 255 };
 	}
 
-	move(dt);
-
 	// puts("Updated - player");
+	prev_position = position;
 
 }
 

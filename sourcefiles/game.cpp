@@ -48,9 +48,14 @@ void Game::load_shape_masses() {
 void Game::update() {
 
 	collide_points.clear();
+	light_pie_points.clear();
 	// puts("Updated - game");
 	player.update(doodle::DeltaTime, &shape_masses, &collide_points);
-	light.update(player.getposition(), &shape_masses, &collide_points);
+	light.update(player.getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
+
+	for (int i = 0; i < collide_points.size(); ++i) {
+		light_pie_points.push_back(collide_points[i]);
+	}
 
 }
 
@@ -77,8 +82,8 @@ void Game::draw() {
 	doodle::set_outline_color(255, 255, 255);
 	doodle::set_outline_width(7);
 	doodle::set_fill_color(255, 0, 0);
-	for (int i = 0; i < collide_points.size(); ++i) {
-		doodle::draw_ellipse(collide_points[i].x, collide_points[i].y, 10, 10);
+	for (int i = 0; i < light_pie_points.size(); ++i) {
+		doodle::draw_ellipse(light_pie_points[i].x, light_pie_points[i].y, 10, 10);
 	}
 	doodle::pop_settings();
 

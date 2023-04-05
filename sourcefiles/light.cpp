@@ -29,10 +29,28 @@ void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vec
 
 }
 
-void Light::update(Math::vec2 pos, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
+void Light::check_points_in_light_pie(std::vector<Point>* allpoints, std::vector<Math::vec2>* collide_points)
+{
+	int i = 0;
+/*	for (int i = 0; i < (*allpoints).size(); ++i) {
+		if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
+			collide_points->push_back((*allpoints)[i].position);
+		}
+	}*/		
+	if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
+		collide_points->push_back((*allpoints)[i].position);
+	}
+}
 
+void Light::update(	Math::vec2 pos, 
+					std::vector<Shape_mass>* shapes, 
+					std::vector<Point>* allpoints, 
+					std::vector<Math::vec2>* light_pie_points,
+					std::vector<Math::vec2>* collide_points) 
+{
 	colliding = false;
 	check_shape_mass_collision(shapes, collide_points);
+	check_points_in_light_pie(allpoints, collide_points);
 	position = pos;
 
 }

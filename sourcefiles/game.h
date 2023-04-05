@@ -36,6 +36,7 @@ struct Game {
 	};
 
 	std::vector<Math::vec2> collide_points;
+	std::vector<Math::vec2> light_pie_points;
 	std::vector<Shape_mass> shape_masses;
 
 	bool did_read_map_file = false;
