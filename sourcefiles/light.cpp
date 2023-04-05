@@ -32,14 +32,21 @@ void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vec
 void Light::check_points_in_light_pie(std::vector<Point>* allpoints, std::vector<Math::vec2>* collide_points)
 {
 	int i = 0;
-/*	for (int i = 0; i < (*allpoints).size(); ++i) {
-		if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
+	for (int i = 0; i < (*allpoints).size(); ++i) {
+		double dx = position.x - (*allpoints)[i].position.x;
+		double dy = position.y - (*allpoints)[i].position.y;
+		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
+		if (distance <= size / 2) {
 			collide_points->push_back((*allpoints)[i].position);
-		}
-	}*/		
-	if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
-		collide_points->push_back((*allpoints)[i].position);
-	}
+		} // why does CirclePoint not work but this????? 
+
+		//if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
+		//	collide_points->push_back((*allpoints)[i].position);
+		//}
+	}		
+	//if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
+	//	collide_points->push_back((*allpoints)[i].position);
+	//}
 }
 
 void Light::update(	Math::vec2 pos, 
