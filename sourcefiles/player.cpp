@@ -12,7 +12,7 @@ Player::Player() {}
 
 Player::~Player() {}
 
-void Player::move(double dt) {
+void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
 
 	double dx = doodle::get_mouse_x() - position.x;
 	double dy = doodle::get_mouse_y() - position.y;
@@ -42,7 +42,19 @@ void Player::move(double dt) {
 		velocity.y += acceleration;
 	}
 
-	position += velocity * dt;
+	position.x += velocity.x * dt;
+	check_shape_mass_collision(shapes, collide_points);
+	if (colliding) {
+		position.x = prev_position.x;
+		colliding = false;
+	}
+	position.y += velocity.y * dt;
+	check_shape_mass_collision(shapes, collide_points);
+	if (colliding) {
+		position.y = prev_position.y;
+		colliding = false;
+	}
+	
 
 }
 
@@ -71,15 +83,15 @@ void Player::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::ve
 void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
 
 	colliding = false;
-	move(dt);
-	check_shape_mass_collision(shapes, collide_points);
-	if (colliding) {
-		color = { 255, 0, 0, 255 };
-		position = prev_position;
-	}
-	else {
-		color = { 0, 0, 255, 255 };
-	}
+	move(dt, shapes, collide_points);
+	//check_shape_mass_collision(shapes, collide_points);
+	//if (colliding) {
+	//	color = { 255, 0, 0, 255 };
+	//	position = prev_position;
+	//}
+	//else {
+	//	color = { 0, 0, 255, 255 };
+	//}
 
 	// puts("Updated - player");
 	prev_position = position;
