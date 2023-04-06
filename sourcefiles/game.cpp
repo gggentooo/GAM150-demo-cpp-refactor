@@ -76,7 +76,7 @@ void Game::draw() {
 	//doodle::pop_settings();
 
 	player.draw();
-	light.draw();
+	light.draw(&collide_points);
 
 	doodle::push_settings();
 	doodle::set_outline_color(255, 255, 255);

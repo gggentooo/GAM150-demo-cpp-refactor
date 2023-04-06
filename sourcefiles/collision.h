@@ -19,6 +19,11 @@ namespace Collide {
 		Math::vec2* line_p1,
 		Math::vec2* line_p2);
 
+	bool LineLine(Math::vec2* p1,
+		Math::vec2* p2,
+		Math::vec2* p3,
+		Math::vec2* p4);
+
 	bool CircleLine(const Math::vec2* center,
 		int diameter,
 		const Math::vec2* point1,

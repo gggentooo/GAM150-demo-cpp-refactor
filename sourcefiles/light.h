@@ -26,7 +26,7 @@ struct Light {
 				std::vector<Point>* allpoints, 
 				std::vector<Math::vec2>* light_pie_points,
 				std::vector<Math::vec2>* collide_points);
-	void draw();
+	void draw(std::vector<Math::vec2>* collide_points);
 
 private:
 	Math::vec2 position;
@@ -35,6 +35,9 @@ private:
 	doodle::Color color = {255, 255, 255, 40};
 
 	bool colliding = false;
+
+	std::vector<double> angles;
+	std::vector<double> pizza_slices;
 
 };
 

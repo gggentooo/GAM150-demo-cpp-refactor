@@ -31,7 +31,6 @@ void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vec
 
 void Light::check_points_in_light_pie(std::vector<Point>* allpoints, std::vector<Math::vec2>* collide_points)
 {
-	int i = 0;
 	for (int i = 0; i < (*allpoints).size(); ++i) {
 		double dx = position.x - (*allpoints)[i].position.x;
 		double dy = position.y - (*allpoints)[i].position.y;
@@ -43,10 +42,38 @@ void Light::check_points_in_light_pie(std::vector<Point>* allpoints, std::vector
 		//if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
 		//	collide_points->push_back((*allpoints)[i].position);
 		//}
-	}		
-	//if (Collide::CirclePoint(&position, size, &(*allpoints)[i].position)) {
-	//	collide_points->push_back((*allpoints)[i].position);
-	//}
+	} // collide_points now contain every point within light perimiter
+
+	// figure out angle between angle_zero and each of the point (vectors)
+	for (int i = 0; i < (*collide_points).size(); ++i) {
+		Math::vec2 vec_center_point = (*collide_points)[i] - position;
+		double angle_center_point = Math::angle_between(angle_zero, vec_center_point);
+		angles.push_back(angle_center_point);
+	}
+
+	// run everything below only if there are any points at all in angles! 
+	if (angles.size() > 0) {
+		// sort angles in ascending order
+		std::sort(angles.begin(), angles.end());
+
+		// create and save pizza slices
+		pizza_slices.push_back(angles[0]);
+		for (int i = 1; i < angles.size(); ++i) {
+			pizza_slices.push_back(angles[i] - angles[i - 1]);
+		}
+
+		//// figure out which pizza slices' middle line intersect with any of the shapes' lines
+		//// do that for 0th pizza slice here @todo
+		//for (int i = 1; i < pizza_slices.size(); ++i) {
+		//	// endpoint of middle line
+		//	double pizza_middle_angle = angles[i - 1] + pizza_slices[i] / 2;
+		//	Math::vec2 endpoint = {cos(pizza_middle_angle)* size / 2, sin(pizza_middle_angle)* size / 2};
+		//	endpoint += position;
+		//	// collision check line from (position to endpoint) with all the shapes lines
+
+		//}
+
+	}
 }
 
 void Light::update(	Math::vec2 pos, 
@@ -62,12 +89,19 @@ void Light::update(	Math::vec2 pos,
 
 }
 
-void Light::draw() {
+void Light::draw(std::vector<Math::vec2>* collide_points) {
 
 	doodle::push_settings();
+
 	doodle::set_outline_color(255, 255, 255, 255);
 	doodle::set_fill_color(color);
 	doodle::draw_ellipse(position.x, position.y, size, size);
+
+	doodle::set_outline_color(255, 255, 0, 255);
+	for (int i = 0; i < (*collide_points).size(); ++i) {
+		doodle::draw_line(position.x, position.y, (*collide_points)[i].x, (*collide_points)[i].y);
+	}
+
 	doodle::pop_settings();
 
 }

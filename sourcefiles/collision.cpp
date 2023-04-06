@@ -41,6 +41,21 @@ bool Collide::LinePoint(Math::vec2* point_p, Math::vec2* line_p1_p, Math::vec2* 
 
 }
 
+bool Collide::LineLine(Math::vec2* p1,
+	Math::vec2* p2,
+	Math::vec2* p3,
+	Math::vec2* p4) 
+{ // http://www.jeffreythompson.org/collision-detection/line-line.php
+	double uA = ((p4->x - p3->x) * (p1->y - p3->y) - (p4->y - p3->y) * (p1->x - p3->x))
+		/ ((p4->y - p3->y) * (p2->x - p1->x) - (p4->x - p3->x) * (p2->y - p1->y));
+	double uB = ((p2->x - p1->x) * (p1->y - p3->y) - (p2->y - p1->y) * (p1->x - p3->x))
+		/ ((p4->y - p3->y) * (p2->x - p1->x) - (p4->x - p3->x) * (p2->y - p1->y));
+	if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+		return true;
+	}
+	return false;
+}
+
 bool Collide::CircleLine(	const Math::vec2* center_p, 
 							int diameter, 
 							const Math::vec2* point1_p, 
