@@ -12,7 +12,7 @@
 #include "library.h"
 // #include "filereader.h"
 #include "player.h"
-#include "../mapdata/Points1.h"
+#include "../mapdata/Points0.h"
 
 struct Game {
 
@@ -27,12 +27,12 @@ struct Game {
 	Light light;
 	// Filereader filereader;
 	// Point_map point_map_0;
-	Points1 points1;
+	Points0 points0;
 
 	// temp hardcoded points
 	std::vector<Point> all_shape_points = {
-		points1._00, points1._01, points1._02,
-		points1._03, points1._04, points1._05	
+		points0._00, points0._01, points0._02,
+		points0._03, points0._04, points0._05
 	};
 
 	std::vector<Math::vec2> collide_points;

@@ -65,7 +65,13 @@
     <ClInclude Include="sourcefiles\Vec2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mapdata\Points0.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
     <ClInclude Include="mapdata\Points1.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mapdata\Points2.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
