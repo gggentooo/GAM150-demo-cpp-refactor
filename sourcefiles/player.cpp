@@ -4,8 +4,8 @@
 	Hankyung Lee
 */
 
-#include <doodle/doodle.hpp>
 #include "player.h"
+#include <doodle/doodle.hpp>
 #include "collision.h"
 
 Player::Player() {}

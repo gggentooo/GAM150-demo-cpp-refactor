@@ -6,7 +6,17 @@
 
 #include "light.h"
 #include <doodle/drawing.hpp>
+#include <doodle/input.hpp>
 #include "collision.h"
+#include "game.h"
+
+void Light::update_color()
+{
+	if (Game::get_input().MouseButtonDown(CS230::Input::MouseButtons::Right)) {
+		puts("right clicked");
+		color = { 255, 80, 80, 40 };
+	}
+}
 
 void Light::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
 

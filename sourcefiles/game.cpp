@@ -47,6 +47,7 @@ void Game::load_shape_masses() {
 
 void Game::update() {
 
+	//input.Update();
 	collide_points.clear();
 	light_pie_points.clear();
 	// puts("Updated - game");

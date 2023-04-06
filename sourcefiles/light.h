@@ -9,6 +9,7 @@
 
 #include "library.h"
 #include <doodle/drawing.hpp>
+// #include "Input.h"
 
 enum LightColor {
 	White,
@@ -18,6 +19,8 @@ enum LightColor {
 };
 
 struct Light {
+
+	void update_color();
 
 	void check_shape_mass_collision(std::vector<Shape_mass>*, std::vector<Math::vec2>* collide_points);
 	void check_points_in_light_pie(std::vector<Point>* allpoints, std::vector<Math::vec2>* light_pie_points);
@@ -29,6 +32,8 @@ struct Light {
 	void draw(std::vector<Math::vec2>* collide_points);
 
 private:
+	// CS230::Input input;
+
 	Math::vec2 position;
 	static constexpr int size = 300;
 	enum LightColor lightcolor = White;

@@ -9,13 +9,13 @@
 
 #define MAX_SHAPE_MASS_COUNT	99
 
+#include "Input.h"
 #include "library.h"
-// #include "filereader.h"
 #include "player.h"
 #include "../mapdata/Points0.h"
 
-struct Game {
-
+class Game {
+public:
 	Game();
 	~Game();
 	void initialize();
@@ -23,11 +23,20 @@ struct Game {
 	void update();
 	void draw();
 
+	static Game& instance() {
+		static Game instance;
+		return instance;
+	}
+
 	Player player;
 	Light light;
-	// Filereader filereader;
-	// Point_map point_map_0;
+	CS230::Input input;
 	Points0 points0;
+
+	static Player& get_player() { return instance().player; }
+	static Light& get_light() { return instance().light; }
+	static Points0& get_points0() { return instance().points0; }
+	static CS230::Input& get_input() { return instance().input; }
 
 	// temp hardcoded points
 	std::vector<Point> all_shape_points = {
@@ -42,6 +51,7 @@ struct Game {
 	bool did_read_map_file = false;
 
 private:
+
 	int shape_count = 1; // also temp hardcoded value
 
 };
