@@ -2,6 +2,7 @@
     GAM150 prototype
     Guyot
     Hankyung Lee
+
 */
 
 #include <iostream>
@@ -15,7 +16,7 @@ int main() {
     doodle::set_window_title(WINDOW_TITLE);
     doodle::set_frame_of_reference(doodle::FrameOfReference::RightHanded_OriginBottomLeft);
 
-    Game game;
+    Game& game = Game::instance();
     game.initialize();
 
     while (!doodle::is_window_closed()) {

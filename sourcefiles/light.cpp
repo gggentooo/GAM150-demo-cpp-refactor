@@ -12,9 +12,19 @@
 
 void Light::update_color()
 {
-	if (Game::get_input().MouseButtonDown(CS230::Input::MouseButtons::Right)) {
-		puts("right clicked");
+	// if (Game::get_input().MouseButtonDown(CS230::Input::MouseButtons::Right)) {
+	// 	puts("light - right pressed");
+	// 	color = { 255, 80, 80, 40 };
+	// }
+	// if (!Game::get_input().MouseButtonDown(CS230::Input::MouseButtons::Right)) {
+	// 	color = { 255, 255, 255, 40 };
+	// }
+	if (Game::get_input().MouseButtonDown(1)) {
+		puts("light - right pressed");
 		color = { 255, 80, 80, 40 };
+	}
+	if (!Game::get_input().MouseButtonDown(1)) {
+		color = { 255, 255, 255, 40 };
 	}
 }
 

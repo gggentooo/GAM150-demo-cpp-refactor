@@ -23,12 +23,15 @@ namespace CS230 {
         void Update();
 
         void SetMouseButtonDown(MouseButtons button, bool value);
-        bool MouseButtonDown(MouseButtons button);
+        //bool MouseButtonDown(MouseButtons button);
+        bool MouseButtonDown(int button);
         bool MouseButtonJustPressed(MouseButtons button);
         bool MouseButtonJustReleased(MouseButtons button);
     private:
-        std::vector<bool> mousebuttons_down;
-        std::vector<bool> previous_mousebuttons_down;
+        // std::vector<bool> mousebuttons_down = {0, 0};
+        // std::vector<bool> previous_mousebuttons_down = {0, 0};
+        bool *mousebuttons_down  {new bool[2]};
+        bool *previous_mousebuttons_down  {new bool[2]};
 
     };
 }

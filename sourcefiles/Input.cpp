@@ -13,8 +13,12 @@ Created:    March 8, 2023
 #include "game.h"
 
 CS230::Input::Input() {
-    mousebuttons_down.resize(static_cast<int>(MouseButtons::Unknown));
-    previous_mousebuttons_down.resize(static_cast<int>(MouseButtons::Unknown));
+    //mousebuttons_down.resize(static_cast<int>(MouseButtons::Unknown));
+    //previous_mousebuttons_down.resize(static_cast<int>(MouseButtons::Unknown));
+    mousebuttons_down[0] = 0;
+    mousebuttons_down[1] = 0;
+    previous_mousebuttons_down[0] = 0;
+    previous_mousebuttons_down[1] = 0;
 }
 
 void CS230::Input::Update() {
@@ -22,7 +26,10 @@ void CS230::Input::Update() {
 }
 
 void CS230::Input::SetMouseButtonDown(MouseButtons button, bool value) {
+    //printf("mousebuttons_down[0] : %d\n", mousebuttons_down[0]);
+    printf("set mousebutton %d to %d\n", static_cast<int>(button), value);
     mousebuttons_down[static_cast<int>(button)] = value;
+    //printf("value set: %d\n", mousebuttons_down[static_cast<int>(button)]);
 }
 
 CS230::Input::MouseButtons convert_doodle_to_cs230(doodle::MouseButtons doodle_mousebutton) {
@@ -38,6 +45,7 @@ CS230::Input::MouseButtons convert_doodle_to_cs230(doodle::MouseButtons doodle_m
 void on_mouse_pressed(doodle::MouseButtons doodle_mouse) {
     CS230::Input::MouseButtons button = convert_doodle_to_cs230(doodle_mouse);
     if (button != CS230::Input::MouseButtons::Unknown) {
+        puts("mouse pressed");
         Game::get_input().SetMouseButtonDown(button, true);
     }
 }
@@ -45,11 +53,16 @@ void on_mouse_pressed(doodle::MouseButtons doodle_mouse) {
 void on_mouse_released(doodle::MouseButtons doodle_mouse) {
     CS230::Input::MouseButtons button = convert_doodle_to_cs230(doodle_mouse);
     if (button != CS230::Input::MouseButtons::Unknown) {
+        puts("mouse released");
         Game::get_input().SetMouseButtonDown(button, false);
     }
 }
-bool CS230::Input::MouseButtonDown(MouseButtons button) {
-    return mousebuttons_down[static_cast<int>(button)];
+// bool CS230::Input::MouseButtonDown(MouseButtons button) {
+//     return mousebuttons_down[static_cast<int>(button)];
+// }
+
+bool CS230::Input::MouseButtonDown(int button) {
+    return mousebuttons_down[button];
 }
 
 bool CS230::Input::MouseButtonJustPressed(MouseButtons button) {
