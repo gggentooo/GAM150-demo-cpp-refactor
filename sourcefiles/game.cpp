@@ -10,7 +10,11 @@
 #include "library.h"
 #include "player.h"
 
-Game::Game() {}
+Game::Game() {
+	anemones.push_back(new Anemone({ 800, 600 }, WHITE));
+	nemos.push_back(new Nemo({ 100, 100 }, BLUE));
+	nemos.push_back(new Nemo({ 200, 100 }, WHITE));
+}
 Game::~Game() {}
 
 void Game::initialize() {
@@ -53,6 +57,9 @@ void Game::update() {
 	// puts("Updated - game");
 	player.update(doodle::DeltaTime, &shape_masses, &collide_points);
 	light.update(player.getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
+	for (int i = 0; i < nemos.size(); ++i) {
+		nemos[i]->update(doodle::DeltaTime, player.getposition(), light.return_color(), &anemones);
+	}
 
 	for (int i = 0; i < collide_points.size(); ++i) {
 		light_pie_points.push_back(collide_points[i]);
@@ -78,6 +85,12 @@ void Game::draw() {
 
 	player.draw();
 	light.draw(&collide_points);
+	for (int i = 0; i < nemos.size(); ++i) {
+		nemos[i]->draw();
+	}
+	for (int i = 0; i < anemones.size(); ++i) {
+		anemones[i]->draw();
+	}
 
 	doodle::push_settings();
 	doodle::set_outline_color(255, 255, 255);

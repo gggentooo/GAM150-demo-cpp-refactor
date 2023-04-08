@@ -25,7 +25,7 @@ private:
 
 	bool colliding = false;
 
-	Math::vec2 position = { 100,100 };
+	Math::vec2 position = { 300,100 };
 	Math::vec2 prev_position = { 100,100 };
 
 	static constexpr int max_speed = 500;

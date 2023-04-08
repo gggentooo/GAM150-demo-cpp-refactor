@@ -12,6 +12,8 @@
 #include "Input.h"
 #include "library.h"
 #include "player.h"
+#include "nemo.h"
+#include "anemone.h"
 #include "../mapdata/Points0.h"
 
 class Game {
@@ -32,6 +34,8 @@ public:
 	Light light;
 	CS230::Input input;
 	Points0 points0;
+	std::vector<Nemo*> nemos;
+	std::vector<Anemone*> anemones;
 
 	static Player& get_player() { return instance().player; }
 	static Light& get_light() { return instance().light; }
