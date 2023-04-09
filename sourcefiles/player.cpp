@@ -16,30 +16,13 @@ void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::
 
 	double dx = doodle::get_mouse_x() - position.x;
 	double dy = doodle::get_mouse_y() - position.y;
+	double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 
-	if (dx >= brake_margin && velocity.x <= max_speed) {
-		velocity.x += acceleration;
+	if (distance > 2) {
+		velocity = { dx * 3, dy * 3 };
 	}
-	if (dx <= brake_margin && velocity.x >= min_brake_speed) {
-		velocity.x -= acceleration;
-	}
-	if (dx <= -brake_margin && velocity.x >= -max_speed) {
-		velocity.x -= acceleration;
-	}
-	if (dx >= -brake_margin && velocity.x <= -min_brake_speed) {
-		velocity.x += acceleration;
-	}
-	if (dy >= brake_margin && velocity.y <= max_speed) {
-		velocity.y += acceleration;
-	}
-	if (dy <= brake_margin && velocity.y >= min_brake_speed) {
-		velocity.y -= acceleration;
-	}
-	if (dy <= -brake_margin && velocity.y >= -max_speed) {
-		velocity.y -= acceleration;
-	}
-	if (dy >= -brake_margin && velocity.y <= -min_brake_speed) {
-		velocity.y += acceleration;
+	if (distance < 2) {
+		velocity = { 0, 0 };
 	}
 
 	position.x += velocity.x * dt;
