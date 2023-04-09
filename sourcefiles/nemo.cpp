@@ -37,7 +37,6 @@ void Nemo::move(double dt, Math::vec2 player_position, enum LightColors lightcol
 		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 		if (distance > 2) {
 			//printf("Moving to anemone %d\n", anemone_number);
-			//velocity *= 0.995;
 			velocity = { dx * 3, dy * 3 };
 		}
 		if (distance < 2) {
@@ -51,9 +50,10 @@ void Nemo::move(double dt, Math::vec2 player_position, enum LightColors lightcol
 	{
 		double dx = player_position.x - position.x;
 		double dy = player_position.y - position.y;
+		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 		//printf("dx, dy: %lf, %lf\n", dx, dy);
 
-		if (dx < LIGHT_SIZE / 2)
+		if (distance < LIGHT_SIZE / 2)
 		{
 			if (dx >= brake_margin && velocity.x <= max_speed) {
 				velocity.x += acceleration;
