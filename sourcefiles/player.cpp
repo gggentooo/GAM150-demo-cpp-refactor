@@ -12,7 +12,7 @@ Player::Player(Math::vec2 initial_position) : position(initial_position) {}
 
 Player::~Player() {}
 
-void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
+void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, std::vector<Wall*>* walls) {
 
 	double dx = doodle::get_mouse_x() - position.x;
 	double dy = doodle::get_mouse_y() - position.y;
@@ -27,12 +27,14 @@ void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::
 
 	position.x += velocity.x * dt;
 	check_shape_mass_collision(shapes, collide_points);
+	check_wall_collision(walls, collide_points);
 	if (colliding) {
 		position.x = prev_position.x;
 		colliding = false;
 	}
 	position.y += velocity.y * dt;
 	check_shape_mass_collision(shapes, collide_points);
+	check_wall_collision(walls, collide_points);
 	if (colliding) {
 		position.y = prev_position.y;
 		colliding = false;
@@ -63,11 +65,28 @@ void Player::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::ve
 	}
 }
 
-void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, bool is_updating_color) {
+void Player::check_wall_collision(std::vector<Wall*>* walls, std::vector<Math::vec2>* collide_points)
+{
+	for (int i = 0; i < walls->size(); ++i)
+	{
+		if ((*walls)[i]->return_is_active())
+		{
+			Math::vec2 point1 = (*walls)[i]->return_point1();
+			Math::vec2 point2 = (*walls)[i]->return_point2();
+			if (Collide::CircleLine(&position, size, &point1, &point2, collide_points))
+			{
+				puts("colliding with wall");
+				colliding = true;
+			}
+		}
+	}
+}
+
+void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, bool is_updating_color, std::vector<Wall*>* walls) {
 
 	colliding = false;
 	if (!is_updating_color) {
-		move(dt, shapes, collide_points);
+		move(dt, shapes, collide_points, walls);
 	}
 	//check_shape_mass_collision(shapes, collide_points);
 	//if (colliding) {

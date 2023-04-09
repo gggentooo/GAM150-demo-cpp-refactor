@@ -8,6 +8,7 @@
 #define NEMO_H
 
 #include "anemone.h"
+#include "wall.h"
 #include "library.h"
 #include "Vec2.h"
 
@@ -20,8 +21,8 @@ public:
 	Math::vec2 getposition() { return position; }
 
 	void move(double dt, Math::vec2 player_position, enum LightColors lightcolor, std::vector<Anemone*>* anemones);
-	void search_anemone(std::vector<Anemone*>* anemones);
-	void update(double dt, Math::vec2 player_position, enum LightColors lightcolor, std::vector<Anemone*>*anemones);
+	void search_anemone(std::vector<Anemone*>* anemones, std::vector<Wall*>* walls);
+	void update(double dt, Math::vec2 player_position, enum LightColors lightcolor, std::vector<Anemone*>* anemones, std::vector<Wall*>* walls);
 	void draw();
 
 

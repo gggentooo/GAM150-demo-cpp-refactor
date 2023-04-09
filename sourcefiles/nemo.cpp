@@ -93,13 +93,14 @@ void Nemo::move(double dt, Math::vec2 player_position, enum LightColors lightcol
 	// code for collision
 }
 
-void Nemo::search_anemone(std::vector<Anemone*>* anemones) {
+void Nemo::search_anemone(std::vector<Anemone*>* anemones, std::vector<Wall*>* walls) {
 	for (int i = 0; i < anemones->size(); ++i) {
 		double dx = (*anemones)[i]->return_position().x - position.x;
 		double dy = (*anemones)[i]->return_position().y - position.y;
 		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 		if (distance < anemone_range && !(*anemones)[i]->return_has_nemo() && (*anemones)[i]->return_color() == color) {
 			anemone_number = i;
+			(*walls)[i]->set_is_active(false);
 			// set velocity
 			if ((*anemones)[i]->return_position().x > position.x) {
 				velocity.x = 100;
@@ -119,13 +120,13 @@ void Nemo::search_anemone(std::vector<Anemone*>* anemones) {
 	}
 }
 
-void Nemo::update(double dt, Math::vec2 player_position, enum LightColors lightcolor, std::vector<Anemone*>* anemones)
+void Nemo::update(double dt, Math::vec2 player_position, enum LightColors lightcolor, std::vector<Anemone*>* anemones, std::vector<Wall*>* walls)
 {
 	// puts("Nemo updated");
 	if (should_update) {
 		move(dt, player_position, lightcolor, anemones);
 		if (!found_anemone)
-			search_anemone(anemones);
+			search_anemone(anemones, walls);
 	}
 }
 

@@ -26,7 +26,7 @@ void Light::update_color(CS230::Input* gameinput)
 		double angle = Math::angle_between(angle_zero, vec_pos_mouse);
 		if (position.y < doodle::get_mouse_y())
 			angle = doodle::TWO_PI - angle;
-		printf("%lf\n", angle);
+		//printf("%lf\n", angle);
 		if (angle > doodle::PI / 6 && angle < doodle::PI / 6 * 5) {
 			lightcolor = GREEN;
 			color = { 80, 255, 80, 40 };
