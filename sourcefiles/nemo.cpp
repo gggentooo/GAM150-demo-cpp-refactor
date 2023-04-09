@@ -87,7 +87,18 @@ void Nemo::move(double dt, Math::vec2 player_position, enum LightColors lightcol
 				velocity.y = 0;
 		}
 	}
+	else
+	{ // inside wrong color; slow down
+		if (velocity.x > 0)
+			velocity.x -= acceleration;
+		else
+			velocity.x = 0;
 
+		if (velocity.y > 0)
+			velocity.y -= acceleration;
+		else
+			velocity.y = 0;
+	}
 
 	position += velocity * dt;
 

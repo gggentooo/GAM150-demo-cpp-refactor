@@ -39,6 +39,11 @@ void Light::update_color(CS230::Input* gameinput)
 			lightcolor = RED;
 			color = { 255, 80, 80, 40 };
 		}
+		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
+		if (distance >= lightwheel_size) {
+			lightcolor = WHITE;
+			color = { 255, 255, 255, 40 };
+		}
 	}
 	if (!(*gameinput).MouseButtonDown(1)) {
 		//color = { 255, 255, 255, 40 };
