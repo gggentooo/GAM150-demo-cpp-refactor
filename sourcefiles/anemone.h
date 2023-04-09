@@ -18,6 +18,8 @@ public:
 	~Anemone();
 	void set_has_nemo(bool value);
 	void draw();
+	bool return_has_nemo() { return has_nemo; }
+	enum LightColors return_color() { return color; }
 	Math::vec2 return_position() { return position; }
 
 private:

@@ -11,9 +11,13 @@
 #include "player.h"
 
 Game::Game() {
-	anemones.push_back(new Anemone({ 800, 600 }, WHITE));
+	anemones.push_back(new Anemone({ 800, 600 }, RED));
+	anemones.push_back(new Anemone({ 400, 500 }, GREEN));
+	anemones.push_back(new Anemone({ 700,200 }, BLUE));
 	nemos.push_back(new Nemo({ 100, 100 }, BLUE));
-	nemos.push_back(new Nemo({ 200, 100 }, WHITE));
+	nemos.push_back(new Nemo({ 200, 100 }, RED));
+	nemos.push_back(new Nemo({ 300,100 }, GREEN));
+	nemos.push_back(new Nemo({ 300,600 }, GREEN));
 }
 Game::~Game() {}
 

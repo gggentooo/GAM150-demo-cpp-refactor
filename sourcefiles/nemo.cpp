@@ -13,6 +13,12 @@ Nemo::Nemo(Math::vec2 position, enum LightColors color) : position(position), ve
 	case WHITE:
 		doodlecolor = { 255,255,255,255 };
 		break;
+	case RED:
+		doodlecolor = { 255, 0, 255, 255 };
+		break;
+	case GREEN:
+		doodlecolor = { 120,255,0,255 };
+		break;
 	case BLUE:
 		doodlecolor = { 0,255,255,255 };
 		break;
@@ -110,7 +116,7 @@ void Nemo::search_anemone(std::vector<Anemone*>* anemones) {
 		double dx = (*anemones)[i]->return_position().x - position.x;
 		double dy = (*anemones)[i]->return_position().y - position.y;
 		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
-		if (distance < anemone_range) {
+		if (distance < anemone_range && !(*anemones)[i]->return_has_nemo() && (*anemones)[i]->return_color() == color) {
 			anemone_number = i;
 			// set velocity
 			if ((*anemones)[i]->return_position().x > position.x) {
