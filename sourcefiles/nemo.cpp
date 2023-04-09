@@ -29,12 +29,12 @@ void Nemo::move(double dt, Math::vec2 player_position, enum LightColors lightcol
 		double dx = (*anemones)[anemone_number]->return_position().x - position.x;
 		double dy = (*anemones)[anemone_number]->return_position().y - position.y;
 		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
-		if (distance > 5) {
+		if (distance > 2) {
 			//printf("Moving to anemone %d\n", anemone_number);
 			//velocity *= 0.995;
 			velocity = { dx * 3, dy * 3 };
 		}
-		if (distance < 5) {
+		if (distance < 2) {
 			velocity = { 0,0 };
 			should_update = false;
 			puts("Nemo stop");

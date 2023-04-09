@@ -30,15 +30,15 @@ public:
 		return instance;
 	}
 
-	Player player;
-	Light light;
+	Player* player = new Player({ 300, 100 });
+	Light* light = new Light({300, 100});
 	CS230::Input input;
 	Points0 points0;
 	std::vector<Nemo*> nemos;
 	std::vector<Anemone*> anemones;
 
-	static Player& get_player() { return instance().player; }
-	static Light& get_light() { return instance().light; }
+	static Player& get_player() { return *instance().player; }
+	static Light& get_light() { return *instance().light; }
 	static Points0& get_points0() { return instance().points0; }
 	static CS230::Input& get_input() { return instance().input; }
 

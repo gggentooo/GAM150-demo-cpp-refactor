@@ -10,6 +10,7 @@ Created:    March 8, 2023
 
 #pragma once
 #include <vector>
+#include "library.h"
 
 namespace CS230 {
     class Input {

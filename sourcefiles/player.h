@@ -7,16 +7,22 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "Input.h"
 #include "library.h"
 #include "light.h"
 
 struct Player {
-	Player();
+	Player(Math::vec2 initial_position);
 	~Player();
 	
-	void move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points);
-	void check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points);
-	void update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points);
+	void move(	double dt, std::vector<Shape_mass>* shapes, 
+				std::vector<Math::vec2>* collide_points);
+	void check_shape_mass_collision(std::vector<Shape_mass>* shapes, 
+									std::vector<Math::vec2>* collide_points);
+	void update(double dt, 
+				std::vector<Shape_mass>* shapes, 
+				std::vector<Math::vec2>* collide_points,
+				bool is_updating_color);
 	void draw();
 	Math::vec2 getposition() { return position; }
 
@@ -25,7 +31,7 @@ private:
 
 	bool colliding = false;
 
-	Math::vec2 position = { 300,100 };
+	Math::vec2 position;
 	Math::vec2 prev_position = { 100,100 };
 
 	static constexpr int max_speed = 500;

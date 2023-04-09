@@ -8,7 +8,7 @@
 #include <doodle/doodle.hpp>
 #include "collision.h"
 
-Player::Player() {}
+Player::Player(Math::vec2 initial_position) : position(initial_position) {}
 
 Player::~Player() {}
 
@@ -80,10 +80,12 @@ void Player::check_shape_mass_collision(std::vector<Shape_mass>* shapes, std::ve
 	}
 }
 
-void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points) {
+void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, bool is_updating_color) {
 
 	colliding = false;
-	move(dt, shapes, collide_points);
+	if (!is_updating_color) {
+		move(dt, shapes, collide_points);
+	}
 	//check_shape_mass_collision(shapes, collide_points);
 	//if (colliding) {
 	//	color = { 255, 0, 0, 255 };

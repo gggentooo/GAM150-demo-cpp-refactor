@@ -55,15 +55,20 @@ void Game::update() {
 	collide_points.clear();
 	light_pie_points.clear();
 	// puts("Updated - game");
-	player.update(doodle::DeltaTime, &shape_masses, &collide_points);
-	light.update(player.getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
+	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color());
+	light->update_color(&get_input());
+	light->update(player->getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
 	for (int i = 0; i < nemos.size(); ++i) {
-		nemos[i]->update(doodle::DeltaTime, player.getposition(), light.return_color(), &anemones);
+		nemos[i]->update(doodle::DeltaTime, player->getposition(), light->return_color(), &anemones);
 	}
 
 	for (int i = 0; i < collide_points.size(); ++i) {
 		light_pie_points.push_back(collide_points[i]);
 	}
+
+	//if (input.MouseButtonDown(0)) {
+	//	puts("Left click");
+	//}
 
 }
 
@@ -83,8 +88,8 @@ void Game::draw() {
 	//doodle::draw_line(0, doodle::get_mouse_y(), WINDOW_WIDTH, doodle::get_mouse_y());
 	//doodle::pop_settings();
 
-	player.draw();
-	light.draw(&collide_points);
+	player->draw();
+	light->draw(&collide_points);
 	for (int i = 0; i < nemos.size(); ++i) {
 		nemos[i]->draw();
 	}

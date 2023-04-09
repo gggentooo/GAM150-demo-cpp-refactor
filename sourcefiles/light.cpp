@@ -4,27 +4,28 @@
 	Hankyung Lee
 */
 
+#include "Vec2.h"
 #include "light.h"
 #include <doodle/drawing.hpp>
 #include <doodle/input.hpp>
 #include "collision.h"
 #include "game.h"
 
-void Light::update_color()
+Light::Light(Math::vec2 initial_position) : position(initial_position) {
+
+}
+
+void Light::update_color(CS230::Input* gameinput)
 {
-	// if (Game::get_input().MouseButtonDown(CS230::Input::MouseButtons::Right)) {
-	// 	puts("light - right pressed");
-	// 	color = { 255, 80, 80, 40 };
-	// }
-	// if (!Game::get_input().MouseButtonDown(CS230::Input::MouseButtons::Right)) {
-	// 	color = { 255, 255, 255, 40 };
-	// }
-	if (Game::get_input().MouseButtonDown(1)) {
-		puts("light - right pressed");
-		color = { 255, 80, 80, 40 };
+	if ((*gameinput).MouseButtonDown(1)) {
+		is_updating_color = true;
+		//color = { 255, 80, 80, 40 };
+		double dx = doodle::get_mouse_x() - position.x;
+		double dy = doodle::get_mouse_y() - position.y;
 	}
-	if (!Game::get_input().MouseButtonDown(1)) {
-		color = { 255, 255, 255, 40 };
+	if (!(*gameinput).MouseButtonDown(1)) {
+		//color = { 255, 255, 255, 40 };
+		is_updating_color = false;
 	}
 }
 
@@ -120,6 +121,29 @@ void Light::draw(std::vector<Math::vec2>* collide_points) {
 	doodle::set_outline_color(255, 255, 0, 255);
 	for (int i = 0; i < (*collide_points).size(); ++i) {
 		doodle::draw_line(position.x, position.y, (*collide_points)[i].x, (*collide_points)[i].y);
+	}
+
+	if (is_updating_color) {
+		doodle::no_outline();
+		//red
+		doodle::set_fill_color({ 255, 80, 80, 160 });
+		doodle::draw_quad(	position.x, position.y, 
+							position.x, position.y + lightwheel_size,
+							position.x + lightwheel_size * cos(doodle::PI / 6), position.y + lightwheel_size * sin(doodle::PI / 6),
+							position.x + lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
+		//green
+		doodle::set_fill_color({ 80, 255, 80, 160 });
+		doodle::draw_quad(position.x, position.y,
+			position.x + lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6),
+			position.x, position.y - lightwheel_size,
+			position.x - lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
+		//blue
+		doodle::set_fill_color({ 80, 80, 255, 160 });
+		doodle::draw_quad(position.x, position.y,
+			position.x, position.y + lightwheel_size,
+			position.x - lightwheel_size * cos(doodle::PI / 6), position.y + lightwheel_size * sin(doodle::PI / 6),
+			position.x - lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
+
 	}
 
 	doodle::pop_settings();
