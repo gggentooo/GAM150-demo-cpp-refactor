@@ -22,6 +22,23 @@ void Light::update_color(CS230::Input* gameinput)
 		//color = { 255, 80, 80, 40 };
 		double dx = doodle::get_mouse_x() - position.x;
 		double dy = doodle::get_mouse_y() - position.y;
+		Math::vec2 vec_pos_mouse = { dx, dy };
+		double angle = Math::angle_between(angle_zero, vec_pos_mouse);
+		if (position.y < doodle::get_mouse_y())
+			angle = doodle::TWO_PI - angle;
+		printf("%lf\n", angle);
+		if (angle > doodle::PI / 6 && angle < doodle::PI / 6 * 5) {
+			lightcolor = GREEN;
+			color = { 80, 255, 80, 40 };
+		}
+		if (angle > doodle::PI / 6 * 5 && angle < doodle::PI * 4 / 3) {
+			lightcolor = BLUE;
+			color = { 80, 80, 255, 40 };
+		}
+		if (angle > doodle::PI * 4 / 3 || angle < doodle::PI / 6) {
+			lightcolor = RED;
+			color = { 255, 80, 80, 40 };
+		}
 	}
 	if (!(*gameinput).MouseButtonDown(1)) {
 		//color = { 255, 255, 255, 40 };
