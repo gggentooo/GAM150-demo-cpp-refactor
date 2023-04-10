@@ -4,8 +4,8 @@
 	Jimin Lim
 */
 
-#ifndef POINTS1_H
-#define POINTS1_H
+#ifndef POINTS2_H
+#define POINTS2_H
 
 #include "../sourcefiles/library.h"
 

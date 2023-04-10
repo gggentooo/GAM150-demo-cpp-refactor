@@ -8,7 +8,9 @@ Author:     Jonathan Holmes, Hankyung Lee
 Created:    March 8, 2023
 */
 
-#pragma once
+#ifndef INPUT_H
+#define INPUT_H
+
 #include <vector>
 #include "library.h"
 
@@ -36,3 +38,5 @@ namespace CS230 {
 
     };
 }
+
+#endif

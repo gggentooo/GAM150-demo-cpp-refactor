@@ -19,14 +19,15 @@ void Light::update_color(CS230::Input* gameinput)
 {
 	if ((*gameinput).MouseButtonDown(1)) {
 		is_updating_color = true;
-		//color = { 255, 80, 80, 40 };
+		// printf("is_updating_color: %d\n", is_updating_color);
+
 		double dx = doodle::get_mouse_x() - position.x;
 		double dy = doodle::get_mouse_y() - position.y;
 		Math::vec2 vec_pos_mouse = { dx, dy };
 		double angle = Math::angle_between(angle_zero, vec_pos_mouse);
 		if (position.y < doodle::get_mouse_y())
 			angle = doodle::TWO_PI - angle;
-		//printf("%lf\n", angle);
+
 		if (angle > doodle::PI / 6 && angle < doodle::PI / 6 * 5) {
 			lightcolor = GREEN;
 			color = { 80, 255, 80, 40 };
@@ -44,9 +45,10 @@ void Light::update_color(CS230::Input* gameinput)
 			lightcolor = WHITE;
 			color = { 255, 255, 255, 40 };
 		}
+		return;
 	}
-	if (!(*gameinput).MouseButtonDown(1)) {
-		//color = { 255, 255, 255, 40 };
+	else if (!(*gameinput).MouseButtonDown(1)) {
+		//puts("right button not pressed");
 		is_updating_color = false;
 	}
 }
@@ -132,8 +134,8 @@ void Light::update(	Math::vec2 pos,
 
 }
 
-void Light::draw(std::vector<Math::vec2>* collide_points) {
-
+void Light::draw(std::vector<Math::vec2>* collide_points) 
+{
 	doodle::push_settings();
 
 	doodle::set_outline_color(255, 255, 255, 255);
@@ -144,8 +146,10 @@ void Light::draw(std::vector<Math::vec2>* collide_points) {
 	for (int i = 0; i < (*collide_points).size(); ++i) {
 		doodle::draw_line(position.x, position.y, (*collide_points)[i].x, (*collide_points)[i].y);
 	}
+	//printf("is_updating_color, in draw: %d\n", is_updating_color);
 
 	if (is_updating_color) {
+		puts("draw wheel");
 		doodle::no_outline();
 		//red
 		doodle::set_fill_color({ 255, 80, 80, 160 });

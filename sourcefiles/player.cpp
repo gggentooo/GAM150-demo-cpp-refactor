@@ -112,3 +112,8 @@ void Player::draw() {
 	doodle::pop_settings();
 
 }
+
+void Player::set_position(Math::vec2 coords)
+{
+	position = coords;
+}

@@ -18,13 +18,17 @@ Stage0::Stage0()
 	nemos.push_back(new Nemo({ 800, 100 }, RED));
 	nemos.push_back(new Nemo({ 300,100 }, GREEN));
 	nemos.push_back(new Nemo({ 300,600 }, GREEN));
+	walls.push_back(new Wall({ 800, 600 }, { 900, 400 }, RED));
+	walls.push_back(new Wall({ 400, 500 }, { 200, 400 }, GREEN));
+	walls.push_back(new Wall({ 700, 200 }, { 500, 400 }, BLUE));
 }
 
 Stage0::~Stage0() {}
 
-void Stage0::initialize() 
+void Stage0::initialize(Math::vec2 player_position)
 {
 	load_shape_masses();
+	player->set_position(player_position);
 }
 
 void Stage0::load_shape_masses() 
@@ -58,11 +62,12 @@ void Stage0::load_shape_masses()
 void Stage0::update() {
 	collide_points.clear();
 	light_pie_points.clear();
-	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color());
-	light->update_color(&get_input());
+	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls);
 	light->update(player->getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
+	light->update_color(&get_input());
+	//printf("is_updating_color, in stage0::update: %d\n", light->return_updating_color());
 	for (int i = 0; i < nemos.size(); ++i) {
-		nemos[i]->update(doodle::DeltaTime, player->getposition(), light->return_color(), &anemones);
+		nemos[i]->update(doodle::DeltaTime, player->getposition(), light->return_color(), &anemones, &walls);
 	}
 
 	for (int i = 0; i < collide_points.size(); ++i) {
@@ -72,14 +77,15 @@ void Stage0::update() {
 
 void Stage0::draw()
 {
-	doodle::clear_background(0);
-
-	//for (int i = 0; i < shape_count; ++i) {
-	//	shape_masses[i].draw();
-	//}
+	for (int i = 0; i < shape_count; ++i) {
+		shape_masses[i].draw();
+	}
 
 	player->draw();
 	light->draw(&collide_points);
+	for (int i = 0; i < walls.size(); ++i) {
+		walls[i]->draw();
+	}
 	for (int i = 0; i < nemos.size(); ++i) {
 		nemos[i]->draw();
 	}

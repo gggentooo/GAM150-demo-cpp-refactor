@@ -30,6 +30,8 @@ struct Player {
 	void draw();
 	Math::vec2 getposition() { return position; }
 
+	void set_position(Math::vec2 coords);
+
 private:
 	doodle::Color color = {0, 0, 255, 255};
 

@@ -22,7 +22,7 @@ public:
     //Stage0(Player* player, Light* light, Math::vec2 player_position);
     Stage0();
     ~Stage0();
-    void initialize();
+    void initialize(Math::vec2 player_position);
     void load_shape_masses();
     void update();
     void draw();
@@ -34,6 +34,7 @@ public:
     }
 
     static CS230::Input& get_input() { return instance().input; }
+    Light* get_light() { return light; }
 
     Points0* points0 = new Points0;
     std::vector<Point> all_shape_points = points0->points;
@@ -43,6 +44,7 @@ public:
 
     std::vector<Nemo*> nemos;
     std::vector<Anemone*> anemones;
+    std::vector<Wall*> walls;
 
 private:
     int shape_count = points0->shapecount;

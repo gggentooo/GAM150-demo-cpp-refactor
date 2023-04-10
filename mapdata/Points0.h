@@ -5,11 +5,12 @@
 */
 
 #ifndef POINTS0_H
-#define POINTS0_h
+#define POINTS0_H
 
 #include "../sourcefiles/library.h"
 
-struct Points0 {
+struct Points0
+{
 	int pointcount = 6;
 	int shapecount = 1;
 
@@ -29,9 +30,6 @@ struct Points0 {
 	Point _03 = { 0, 3, {820, 520} };
 	Point _04 = { 0, 4, {640, 560} };
 	Point _05 = { 0, 5, {420, 580} };
-
-	
-
 };
 
 #endif
