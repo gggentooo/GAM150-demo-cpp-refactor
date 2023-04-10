@@ -15,13 +15,16 @@ Game::~Game() {}
 
 void Game::initialize(int stage_no)
 {
+	if (title_on) {
+		return;
+	}
 	switch (stage_no) {
 	case 0:
-		stage0->initialize({ 300, 100 });
+		stage0->initialize({ 1000, 300 });
 		did_initialize = true;
 		break;
 	case 1:
-		stage1->initialize({ 500,400 });
+		stage1->initialize({ 100,400 });
 		did_initialize = true;
 		break;
 
@@ -30,6 +33,12 @@ void Game::initialize(int stage_no)
 
 void Game::update()
 {
+	if (title_on) {
+		title->update();
+		if (title->return_move_on())
+			title_on = false;
+		return;
+	}
 	if (!did_initialize) {
 		initialize(current_stage);
 	}
@@ -59,6 +68,10 @@ void Game::update()
 
 void Game::draw() 
 {
+	if (title_on) {
+		title->draw();
+		return;
+	}
 	if (did_initialize) {
 		doodle::clear_background(0);
 		switch (current_stage) {

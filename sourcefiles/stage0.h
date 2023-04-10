@@ -55,10 +55,10 @@ private:
 
     CS230::Input input;
 
-    Player* player = new Player({ 300, 100 });
-    Light* light = new Light({ 300, 100 });
+    Player* player = new Player({ 800, 300 });
+    Light* light = new Light({ 800, 300 });
 
-    Math::vec2 clear_point = { 1200, 400 };
+    Math::vec2 clear_point = { 200, 600 };
     int clear_point_size = 100;
     bool cleared = false;
 };

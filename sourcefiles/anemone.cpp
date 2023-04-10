@@ -12,13 +12,13 @@ Anemone::Anemone(Math::vec2 position, enum LightColors color) : position(positio
 		doodlecolor = { 255,255,255,80 };
 		break;
 	case RED:
-		doodlecolor = { 255, 0, 255, 80 };
+		doodlecolor = { 255,0,120,80 };
 		break;
 	case GREEN:
 		doodlecolor = { 120,255,0,80 };
 		break;
 	case BLUE:
-		doodlecolor = { 0,255,255,80 };
+		doodlecolor = { 0,120,255,80 };
 		break;
 	}
 }

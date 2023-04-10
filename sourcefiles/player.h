@@ -38,7 +38,7 @@ private:
 	bool colliding = false;
 
 	Math::vec2 position;
-	Math::vec2 prev_position = { 100,100 };
+	Math::vec2 prev_position;
 
 	static constexpr int max_speed = 500;
 	static constexpr int min_brake_speed = 10;

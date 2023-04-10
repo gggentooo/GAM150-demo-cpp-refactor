@@ -88,29 +88,17 @@ void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math
 	if (!is_updating_color) {
 		move(dt, shapes, collide_points, walls);
 	}
-	//check_shape_mass_collision(shapes, collide_points);
-	//if (colliding) {
-	//	color = { 255, 0, 0, 255 };
-	//	position = prev_position;
-	//}
-	//else {
-	//	color = { 0, 0, 255, 255 };
-	//}
-
-	// puts("Updated - player");
 	prev_position = position;
-
 }
 
-void Player::draw() {
-
+void Player::draw()
+{
 	doodle::push_settings();
 	doodle::set_outline_width(4);
 	doodle::set_fill_color(color);
 	doodle::set_outline_color({ 255, 255, 255, 255 });
 	doodle::draw_ellipse(position.x, position.y, size, size);
 	doodle::pop_settings();
-
 }
 
 void Player::set_position(Math::vec2 coords)

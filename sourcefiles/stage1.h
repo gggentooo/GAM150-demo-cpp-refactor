@@ -7,6 +7,7 @@
 #ifndef STAGE1_H
 #define STAGE1_H
 
+#include "collision.h"
 #include "library.h"
 #include "Vec2.h"
 
@@ -46,6 +47,7 @@ public:
     std::vector<Anemone*> anemones;
     std::vector<Wall*> walls;
 
+    void check_cleared();
     bool return_cleared() { return cleared; }
 
 private:
@@ -53,9 +55,11 @@ private:
 
     CS230::Input input;
 
-    Player* player = new Player({ 300, 100 });
-    Light* light = new Light({ 300, 100 });
+    Player* player = new Player({ 100, 100 });
+    Light* light = new Light({ 100, 100 });
 
+    Math::vec2 clear_point = { 1200, 240 };
+    int clear_point_size = 100;
     bool cleared = false;
 };
 
