@@ -146,32 +146,29 @@ void Light::draw(std::vector<Math::vec2>* collide_points)
 	for (int i = 0; i < (*collide_points).size(); ++i) {
 		doodle::draw_line(position.x, position.y, (*collide_points)[i].x, (*collide_points)[i].y);
 	}
-	//printf("is_updating_color, in draw: %d\n", is_updating_color);
-
-	if (is_updating_color) {
-		puts("draw wheel");
-		doodle::no_outline();
-		//red
-		doodle::set_fill_color({ 255, 80, 80, 160 });
-		doodle::draw_quad(	position.x, position.y, 
-							position.x, position.y + lightwheel_size,
-							position.x + lightwheel_size * cos(doodle::PI / 6), position.y + lightwheel_size * sin(doodle::PI / 6),
-							position.x + lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
-		//green
-		doodle::set_fill_color({ 80, 255, 80, 160 });
-		doodle::draw_quad(position.x, position.y,
-			position.x + lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6),
-			position.x, position.y - lightwheel_size,
-			position.x - lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
-		//blue
-		doodle::set_fill_color({ 80, 80, 255, 160 });
-		doodle::draw_quad(position.x, position.y,
-			position.x, position.y + lightwheel_size,
-			position.x - lightwheel_size * cos(doodle::PI / 6), position.y + lightwheel_size * sin(doodle::PI / 6),
-			position.x - lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
-
-	}
 
 	doodle::pop_settings();
+}
 
+void Light::draw_wheel()
+{
+	doodle::no_outline();
+	//red
+	doodle::set_fill_color({ 255, 80, 80, 160 });
+	doodle::draw_quad(position.x, position.y,
+		position.x, position.y + lightwheel_size,
+		position.x + lightwheel_size * cos(doodle::PI / 6), position.y + lightwheel_size * sin(doodle::PI / 6),
+		position.x + lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
+	//green
+	doodle::set_fill_color({ 80, 255, 80, 160 });
+	doodle::draw_quad(position.x, position.y,
+		position.x + lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6),
+		position.x, position.y - lightwheel_size,
+		position.x - lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
+	//blue
+	doodle::set_fill_color({ 80, 80, 255, 160 });
+	doodle::draw_quad(position.x, position.y,
+		position.x, position.y + lightwheel_size,
+		position.x - lightwheel_size * cos(doodle::PI / 6), position.y + lightwheel_size * sin(doodle::PI / 6),
+		position.x - lightwheel_size * cos(doodle::PI / 6), position.y - lightwheel_size * sin(doodle::PI / 6));
 }

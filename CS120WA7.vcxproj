@@ -30,6 +30,7 @@
     <ClCompile Include="sourcefiles\nemo.cpp" />
     <ClCompile Include="sourcefiles\player.cpp" />
     <ClCompile Include="sourcefiles\stage0.cpp" />
+    <ClCompile Include="sourcefiles\stage1.cpp" />
     <ClCompile Include="sourcefiles\Vec2.cpp" />
     <ClCompile Include="sourcefiles\wall.cpp" />
   </ItemGroup>
@@ -48,6 +49,7 @@
     <ClInclude Include="sourcefiles\player.h" />
     <ClInclude Include="sourcefiles\Points1.h" />
     <ClInclude Include="sourcefiles\stage0.h" />
+    <ClInclude Include="sourcefiles\stage1.h" />
     <ClInclude Include="sourcefiles\Vec2.h" />
     <ClInclude Include="sourcefiles\wall.h" />
   </ItemGroup>

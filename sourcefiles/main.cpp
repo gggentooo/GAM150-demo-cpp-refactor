@@ -17,14 +17,13 @@ int main() {
     doodle::set_frame_of_reference(doodle::FrameOfReference::RightHanded_OriginBottomLeft);
 
     Game& game = Game::instance();
-    game.initialize();
+    //game.initialize();
 
-    while (!doodle::is_window_closed()) {
-
+    while (!doodle::is_window_closed())
+    {
         doodle::update_window();
         game.update();
         game.draw();
-
     }
 
     return 0;

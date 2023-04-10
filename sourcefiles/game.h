@@ -21,7 +21,7 @@ class Game {
 public:
 	Game();
 	~Game();
-	void initialize();
+	void initialize(int stage_no);
 	static Game& instance() {
 		static Game instance;
 		return instance;
@@ -33,9 +33,10 @@ public:
 
 private:
 	CS230::Input input;
-	int currentstage = 0;
+	int current_stage = 0;
+	bool did_initialize = false;
 	Stage0* stage0 = new Stage0();
-	//Stage1* stage1 = new Stage1();
+	Stage1* stage1 = new Stage1();
 
 };
 

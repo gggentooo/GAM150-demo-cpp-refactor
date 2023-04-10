@@ -59,7 +59,17 @@ void Stage0::load_shape_masses()
 
 }
 
+void Stage0::check_cleared()
+{
+	Math::vec2 player_position = player->getposition();
+	if (Collide::CirclePoint(&clear_point, clear_point_size, &player_position))
+	{
+		cleared = true;
+	}
+}
+
 void Stage0::update() {
+	check_cleared();
 	collide_points.clear();
 	light_pie_points.clear();
 	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls);
@@ -100,5 +110,15 @@ void Stage0::draw()
 	for (int i = 0; i < light_pie_points.size(); ++i) {
 		doodle::draw_ellipse(light_pie_points[i].x, light_pie_points[i].y, 10, 10);
 	}
+	doodle::pop_settings();
+
+	if (light->return_updating_color())
+		light->draw_wheel();
+
+	// clearpoint
+	doodle::push_settings();
+	doodle::set_outline_color(255, 0, 0, 255);
+	doodle::set_fill_color(255, 255, 255, 180);
+	doodle::draw_ellipse(clear_point.x, clear_point.y, clear_point_size, clear_point_size);
 	doodle::pop_settings();
 }

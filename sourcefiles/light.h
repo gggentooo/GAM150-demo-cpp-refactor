@@ -27,6 +27,7 @@ struct Light {
 				std::vector<Math::vec2>* light_pie_points,
 				std::vector<Math::vec2>* collide_points);
 	void draw(std::vector<Math::vec2>* collide_points);
+	void draw_wheel();
 	bool return_updating_color() { return is_updating_color; }
 
 private:

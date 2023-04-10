@@ -9,6 +9,7 @@
 
 #include "library.h"
 #include "Vec2.h"
+#include "collision.h"
 
 #include "player.h"
 #include "nemo.h"
@@ -46,6 +47,9 @@ public:
     std::vector<Anemone*> anemones;
     std::vector<Wall*> walls;
 
+    void check_cleared();
+    bool return_cleared() { return cleared; }
+
 private:
     int shape_count = points0->shapecount;
 
@@ -54,6 +58,9 @@ private:
     Player* player = new Player({ 300, 100 });
     Light* light = new Light({ 300, 100 });
 
+    Math::vec2 clear_point = { 1200, 400 };
+    int clear_point_size = 100;
+    bool cleared = false;
 };
 
 #endif
