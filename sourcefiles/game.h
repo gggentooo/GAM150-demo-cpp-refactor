@@ -32,6 +32,8 @@ public:
 
 	static CS230::Input& get_input() { return instance().input; }
 
+	double return_thankyou_timer() { return thankyou_timer; }
+
 private:
 	CS230::Input input;
 	bool title_on = true;
@@ -40,6 +42,7 @@ private:
 	Title* title = new Title();
 	Stage0* stage0 = new Stage0();
 	Stage1* stage1 = new Stage1();
+	double thankyou_timer = 0;
 
 };
 

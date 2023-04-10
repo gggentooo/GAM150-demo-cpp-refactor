@@ -24,6 +24,8 @@ int main() {
         doodle::update_window();
         game.update();
         game.draw();
+        if (game.return_thankyou_timer() >= 2)
+            return 0;
     }
 
     return 0;

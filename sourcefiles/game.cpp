@@ -58,8 +58,10 @@ void Game::update()
 			stage1->update();
 			if (stage1->return_cleared()) {
 				++current_stage;
-				did_initialize = false;
 			}
+			break;
+		case 2:
+			thankyou_timer += doodle::DeltaTime;
 			break;
 
 		}
@@ -81,7 +83,12 @@ void Game::draw()
 		case 1:
 			stage1->draw();
 			break;
-
+		case 2:
+			doodle::clear_background(0);
+			doodle::no_outline();
+			doodle::set_fill_color(255, 255, 255, 255);
+			doodle::set_font_size(20);
+			doodle::draw_text("Thank you for playing!", 0, 600);
 		}
 	}
 }

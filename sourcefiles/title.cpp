@@ -26,6 +26,6 @@ void Title::update()
 void Title::draw()
 {
 	doodle::clear_background(0);
-	doodle::draw_text("Maritime Lights playtest demo\nGAM150 Spring 2023\nGuyot\n\nInstructions:\nUse your mouse to move around\nHold right click to open the color wheel and change your light color\nSee how different things on the screen act under your light\n\nClick to start\n"
+	doodle::draw_text("Maritime Lights playtest demo\nGAM150 Spring 2023\nGuyot\n\nInstructions:\n\Move around using your mouse, and use the color wheel by long-pressing the right click button. \nLead the small colored circles to the larger circles of corresponding color to disable the obstacles.\nReach the big white circle to move on. \n\nClick to start\n"
 		, 0, 600);
 }
