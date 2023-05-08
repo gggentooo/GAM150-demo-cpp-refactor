@@ -12,7 +12,7 @@
 #define WINDOW_WIDTH	1280
 #define WINDOW_HEIGHT	720
 #define angle_zero		{1, 0}
-#define LIGHT_SIZE		320
+#define LIGHT_SIZE		500
 
 #ifndef LIBRARY_H
 #define LIBRARY_H

@@ -39,6 +39,8 @@ struct Player {
 	void set_position(Math::vec2 coords);
 	void set_lightcolor(enum LightColors color);
 
+	int getsize() { return size; }
+
 private:
 	doodle::Color color = {0, 0, 255, 255};
 
@@ -55,7 +57,7 @@ private:
 	static constexpr int brake_margin = 30;
 	Math::vec2 velocity = { 0, 0 };
 
-	static constexpr int size = 40;
+	static constexpr int size = 150;
 
 };
 

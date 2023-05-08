@@ -10,7 +10,7 @@
 
 Stage0::Stage0() 
 {
-	camera->SetLimit({ 0, 0 }, { 1280, 720 });
+	camera->SetLimit({ 0, 0 }, { 1280 * 3, 720 * 3 });
 	anemones.push_back(new Anemone({ 400, 500 }, RED));
 	anemones.push_back(new Anemone({ 500, 400 }, GREEN));
 	anemones.push_back(new Anemone({ 600, 300 }, BLUE));

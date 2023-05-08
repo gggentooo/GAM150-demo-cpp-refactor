@@ -10,13 +10,13 @@
 
 Stage1::Stage1()
 {
-	camera->SetLimit({ 0, 0 }, { 1280, 720 });
-	anemones.push_back(new Anemone({ 440, 240 }, RED));
-	walls.push_back(new Wall({ 440, 240 }, { 480, 320 }, RED));
-	nemos.push_back(new Nemo({ 720, 390 }, RED));
-	anemones.push_back(new Anemone({ 930, 380 }, BLUE));
-	walls.push_back(new Wall({ 930, 380 }, { 960, 580 }, BLUE));
-	nemos.push_back(new Nemo({ 650, 300 }, BLUE));
+	camera->SetLimit({ 0, 0 }, { 1280 * 3, 720 * 3 });
+	anemones.push_back(new Anemone({ 440 * 3, 240 * 3 }, RED));
+	walls.push_back(new Wall({ 440 * 3, 240 * 3 }, { 480 * 3, 320 * 3 }, RED));
+	nemos.push_back(new Nemo({ 720 * 3, 390 * 3 }, RED));
+	anemones.push_back(new Anemone({ 930 * 3, 380 * 3 }, BLUE));
+	walls.push_back(new Wall({ 930 * 3, 380 * 3 }, { 960 * 3, 580 * 3 }, BLUE));
+	nemos.push_back(new Nemo({ 650 *3, 300 * 3 }, BLUE));
 }
 
 Stage1::~Stage1() {}
@@ -25,8 +25,6 @@ void Stage1::initialize(Math::vec2 player_position)
 {
 	puts("stage1 initializing");
 	load_shape_masses();
-	printf("all_shape_points size: %d\n", all_shape_points.size());
-	printf("shape mass count: %d\n", shape_masses.size());
 	player->set_position(player_position);
 }
 
@@ -34,25 +32,24 @@ void Stage1::load_shape_masses()
 {
 	std::vector<Point> temp_points;
 	for (int j = 0; j < shape_count; ++j) {
-
-		for (int i = 0; i < all_shape_points.size(); ++i) { 
+		for (int i = 0; i < all_shape_points.size(); ++i) {
 			if (all_shape_points[i].shape_no == j) {
 				temp_points.push_back(all_shape_points[i]);
+				Point& added_point = temp_points.back(); // get a reference to the most recently added point
+				added_point.position *= 3; // modify its position
 			}
 		}
 		Shape_mass temp_shape_mass(temp_points, temp_points.size(), j);
 		shape_masses.push_back(temp_shape_mass);
 
 		temp_points.clear();
-
 	}
-
 }
 
 void Stage1::check_cleared()
 {
 	Math::vec2 player_position = player->getposition();
-	if (Collide::CirclePoint(&clear_point, clear_point_size, &player_position))
+	if (Collide::CircleCircle(&clear_point, clear_point_size / 2, &player_position, player->getsize()))
 	{
 		cleared = true;
 	}
@@ -78,7 +75,7 @@ void Stage1::draw()
 {
 	doodle::push_settings();
 
-	doodle::apply_translate(camera->GetPosition().x, camera->GetPosition().y);
+	doodle::apply_translate(-camera->GetPosition().x, -camera->GetPosition().y);
 	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();
 	}
