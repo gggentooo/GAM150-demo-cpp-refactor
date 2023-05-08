@@ -10,13 +10,14 @@
 #include "library.h"
 #include <doodle/drawing.hpp>
 #include "Input.h"
+#include "camera.h"
 
 struct Light {
 
 	Light(Math::vec2 initial_position);
 	~Light();
 
-	void update_color(CS230::Input* gameinput);
+	void update_color(CS230::Input* gameinput, Camera* camera);
 	enum LightColors return_color() { return lightcolor; }
 
 	void check_shape_mass_collision(std::vector<Shape_mass>*, std::vector<Math::vec2>* collide_points);
@@ -25,7 +26,8 @@ struct Light {
 				std::vector<Shape_mass>* shapes, 
 				std::vector<Point>* allpoints, 
 				std::vector<Math::vec2>* light_pie_points,
-				std::vector<Math::vec2>* collide_points);
+				std::vector<Math::vec2>* collide_points, 
+				Camera* camera);
 	void draw(std::vector<Math::vec2>* collide_points);
 	void draw_wheel();
 	bool return_updating_color() { return is_updating_color; }

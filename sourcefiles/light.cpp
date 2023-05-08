@@ -15,14 +15,14 @@ Light::Light(Math::vec2 initial_position) : position(initial_position) {
 
 }
 
-void Light::update_color(CS230::Input* gameinput)
+void Light::update_color(CS230::Input* gameinput, Camera* camera)
 {
 	if ((*gameinput).MouseButtonDown(1)) {
 		is_updating_color = true;
 		// printf("is_updating_color: %d\n", is_updating_color);
 
-		double dx = doodle::get_mouse_x() - position.x;
-		double dy = doodle::get_mouse_y() - position.y;
+		double dx = doodle::get_mouse_x() + camera->GetPosition().x - position.x;
+		double dy = doodle::get_mouse_y() + camera->GetPosition().y - position.y;
 		Math::vec2 vec_pos_mouse = { dx, dy };
 		double angle = Math::angle_between(angle_zero, vec_pos_mouse);
 		if (position.y < doodle::get_mouse_y())
@@ -125,7 +125,8 @@ void Light::update(	Math::vec2 pos,
 					std::vector<Shape_mass>* shapes, 
 					std::vector<Point>* allpoints, 
 					std::vector<Math::vec2>* light_pie_points,
-					std::vector<Math::vec2>* collide_points) 
+					std::vector<Math::vec2>* collide_points,
+					Camera* camera) 
 {
 	colliding = false;
 	check_shape_mass_collision(shapes, collide_points);

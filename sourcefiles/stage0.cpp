@@ -10,6 +10,7 @@
 
 Stage0::Stage0() 
 {
+	camera->SetLimit({ 0, 0 }, { 1280, 720 });
 	anemones.push_back(new Anemone({ 400, 500 }, RED));
 	anemones.push_back(new Anemone({ 500, 400 }, GREEN));
 	anemones.push_back(new Anemone({ 600, 300 }, BLUE));
@@ -40,7 +41,7 @@ void Stage0::load_shape_masses()
 		for (int i = 0; i < all_shape_points.size(); ++i) { 
 			if (all_shape_points[i].shape_no == j) {
 				temp_points.push_back(all_shape_points[i]);
-				//temp_points[i].position = temp_points[i].position * 3;
+				temp_points[i].position = temp_points[i].position * 3;
 			} 
 		}
 		Shape_mass temp_shape_mass(temp_points, temp_points.size(), j);
@@ -63,9 +64,10 @@ void Stage0::update() {
 	check_cleared();
 	collide_points.clear();
 	light_pie_points.clear();
-	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls, &footprints);
+	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls, &footprints, camera);
+	camera->Update(player->getposition());
 	player->set_lightcolor(light->return_color());
-	light->update(player->getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
+	light->update(player->getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points, camera);
 	for (int i = 0; i < nemos.size(); ++i) {
 		nemos[i]->update(doodle::DeltaTime, player->getposition(), light->return_color(), &anemones, &walls);
 	}
@@ -76,6 +78,10 @@ void Stage0::update() {
 
 void Stage0::draw()
 {
+	doodle::push_settings();
+
+	doodle::apply_translate(-camera->GetPosition().x, -camera->GetPosition().y);
+
 	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();
 	}
@@ -99,9 +105,9 @@ void Stage0::draw()
 		light->draw_wheel();
 
 	// clearpoint
-	doodle::push_settings();
 	doodle::set_outline_color(255, 0, 0, 255);
 	doodle::set_fill_color(255, 255, 255, 180);
 	doodle::draw_ellipse(clear_point.x, clear_point.y, clear_point_size, clear_point_size);
+
 	doodle::pop_settings();
 }

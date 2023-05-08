@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sourcefiles\anemone.cpp" />
+    <ClCompile Include="sourcefiles\camera.cpp" />
     <ClCompile Include="sourcefiles\collision.cpp" />
     <ClCompile Include="sourcefiles\filereader.cpp" />
     <ClCompile Include="sourcefiles\footprint.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="mapdata\Points1.h" />
     <ClInclude Include="mapdata\Points2.h" />
     <ClInclude Include="sourcefiles\anemone.h" />
+    <ClInclude Include="sourcefiles\camera.h" />
     <ClInclude Include="sourcefiles\collision.h" />
     <ClInclude Include="sourcefiles\filereader.h" />
     <ClInclude Include="sourcefiles\footprint.h" />

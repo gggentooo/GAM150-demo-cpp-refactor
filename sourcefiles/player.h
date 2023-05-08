@@ -12,6 +12,7 @@
 #include "light.h"
 #include "wall.h"
 #include "footprint.h"
+#include "camera.h"
 
 struct Player {
 	Player(Math::vec2 initial_position);
@@ -19,7 +20,8 @@ struct Player {
 	
 	void move(	double dt, std::vector<Shape_mass>* shapes, 
 				std::vector<Math::vec2>* collide_points,
-				std::vector<Wall*>* walls);
+				std::vector<Wall*>* walls,
+				Camera* camera);
 	void check_shape_mass_collision(std::vector<Shape_mass>* shapes, 
 									std::vector<Math::vec2>* collide_points);
 	void check_footprint_visible(std::vector<Footprint*>* footprints);
@@ -29,7 +31,8 @@ struct Player {
 				std::vector<Math::vec2>* collide_points,
 				bool is_updating_color,
 				std::vector<Wall*>* walls,
-				std::vector<Footprint*>* footprints);
+				std::vector<Footprint*>* footprints,
+				Camera* camera);
 	void draw();
 	Math::vec2 getposition() { return position; }
 

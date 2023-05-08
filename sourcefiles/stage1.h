@@ -10,6 +10,7 @@
 #include "collision.h"
 #include "library.h"
 #include "Vec2.h"
+#include "camera.h"
 
 #include "player.h"
 #include "nemo.h"
@@ -51,6 +52,7 @@ public:
 
     void check_cleared();
     bool return_cleared() { return cleared; }
+    Camera* get_camera() { return camera; }
 
 private:
     int shape_count = points1->shapecount;
@@ -59,6 +61,7 @@ private:
 
     Player* player = new Player({ 100, 100 });
     Light* light = new Light({ 100, 100 });
+    Camera* camera = new Camera({ 427, 240 }, { 853, 480 });
 
     Math::vec2 clear_point = { 1200, 240 };
     int clear_point_size = 100;

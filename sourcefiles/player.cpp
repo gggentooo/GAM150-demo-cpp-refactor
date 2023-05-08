@@ -12,10 +12,10 @@ Player::Player(Math::vec2 initial_position) : position(initial_position) {}
 
 Player::~Player() {}
 
-void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, std::vector<Wall*>* walls) {
+void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, std::vector<Wall*>* walls, Camera* camera) {
 
-	double dx = doodle::get_mouse_x() - position.x;
-	double dy = doodle::get_mouse_y() - position.y;
+	double dx = doodle::get_mouse_x() + camera->GetPosition().x - position.x;
+	double dy = doodle::get_mouse_y() + camera->GetPosition().y - position.y;
 	double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 
 	if (distance > 2) {
@@ -102,13 +102,31 @@ void Player::set_lightcolor(enum LightColors color)
 	lightcolor = color;
 }
 
-void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, bool is_updating_color, std::vector<Wall*>* walls, std::vector<Footprint*>* footprints) {
+void Player::update(double dt, std::vector<Shape_mass>* shapes, 
+	std::vector<Math::vec2>* collide_points, bool is_updating_color, 
+	std::vector<Wall*>* walls, std::vector<Footprint*>* footprints, Camera* camera) {
 	check_footprint_visible(footprints);
 	colliding = false;
 	if (!is_updating_color) {
-		move(dt, shapes, collide_points, walls);
+		move(dt, shapes, collide_points, walls, camera);
 	}
 	prev_position = position;
+	if (position.x < camera->GetPosition().x + size / 2) {
+		position = { camera->GetPosition().x + size / 2, position.y };
+		velocity = { 0, velocity.y }; 
+	}
+	if (position.x + size / 2 > camera->GetPosition().x + 1280) {
+		position = { camera->GetPosition().x + 1280 - size / 2, position.y };
+		velocity = { 0, velocity.y };
+	}
+	if (position.y < camera->GetPosition().y + size / 2) {
+		position = { position.x, camera->GetPosition().y + size / 2 };
+		velocity = { velocity.x, 0 };
+	}
+	if (position.y + size / 2 > camera->GetPosition().y + 720) {
+		position = { position.x, camera->GetPosition().y + 720 - size / 2 };
+		velocity = { velocity.x, 0 };
+	}
 }
 
 void Player::draw()

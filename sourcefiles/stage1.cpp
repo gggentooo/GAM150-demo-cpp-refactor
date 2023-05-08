@@ -10,6 +10,7 @@
 
 Stage1::Stage1()
 {
+	camera->SetLimit({ 0, 0 }, { 1280, 720 });
 	anemones.push_back(new Anemone({ 440, 240 }, RED));
 	walls.push_back(new Wall({ 440, 240 }, { 480, 320 }, RED));
 	nemos.push_back(new Nemo({ 720, 390 }, RED));
@@ -61,8 +62,9 @@ void Stage1::update() {
 	check_cleared();
 	collide_points.clear();
 	light_pie_points.clear();
-	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls, &footprints);
-	light->update(player->getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
+	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls, &footprints, camera);
+	camera->Update(player->getposition());
+	light->update(player->getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points, camera);
 	for (int i = 0; i < nemos.size(); ++i) {
 		nemos[i]->update(doodle::DeltaTime, player->getposition(), light->return_color(), &anemones, &walls);
 	}
@@ -74,6 +76,9 @@ void Stage1::update() {
 
 void Stage1::draw()
 {
+	doodle::push_settings();
+
+	doodle::apply_translate(camera->GetPosition().x, camera->GetPosition().y);
 	for (int i = 0; i < shape_count; ++i) {
 		shape_masses[i].draw();
 	}
@@ -94,9 +99,9 @@ void Stage1::draw()
 		light->draw_wheel();
 
 	// clearpoint
-	doodle::push_settings();
 	doodle::set_outline_color(255, 0, 0, 255);
 	doodle::set_fill_color(255, 255, 255, 180);
 	doodle::draw_ellipse(clear_point.x, clear_point.y, clear_point_size, clear_point_size);
+
 	doodle::pop_settings();
 }

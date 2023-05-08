@@ -63,6 +63,9 @@
     <ClCompile Include="sourcefiles\footprint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sourcefiles\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sourcefiles\filereader.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sourcefiles\footprint.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sourcefiles\camera.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -46,7 +46,7 @@ void Game::update()
 		input.Update();
 		switch (current_stage) {
 		case 0:
-			stage0->get_light()->update_color(&get_input());
+			stage0->get_light()->update_color(&get_input(), stage0->get_camera());
 			stage0->update();
 			if (stage0->return_cleared()) {
 				++current_stage;
@@ -54,7 +54,7 @@ void Game::update()
 			}
 			break;
 		case 1:
-			stage1->get_light()->update_color(&get_input());
+			stage1->get_light()->update_color(&get_input(), stage1->get_camera());
 			stage1->update();
 			if (stage1->return_cleared()) {
 				++current_stage;
