@@ -61,7 +61,7 @@ void Stage1::update() {
 	check_cleared();
 	collide_points.clear();
 	light_pie_points.clear();
-	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls);
+	player->update(doodle::DeltaTime, &shape_masses, &collide_points, light->return_updating_color(), &walls, &footprints);
 	light->update(player->getposition(), &shape_masses, &all_shape_points, &light_pie_points, &collide_points);
 	for (int i = 0; i < nemos.size(); ++i) {
 		nemos[i]->update(doodle::DeltaTime, player->getposition(), light->return_color(), &anemones, &walls);

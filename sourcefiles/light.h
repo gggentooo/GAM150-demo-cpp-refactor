@@ -29,6 +29,7 @@ struct Light {
 	void draw(std::vector<Math::vec2>* collide_points);
 	void draw_wheel();
 	bool return_updating_color() { return is_updating_color; }
+	int return_size() { return size; }
 
 private:
 	// CS230::Input input;

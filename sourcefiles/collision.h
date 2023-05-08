@@ -30,6 +30,11 @@ namespace Collide {
 		const Math::vec2* point2,
 		std::vector<Math::vec2>* collide_points);
 
+    bool CircleCircle(const Math::vec2* center1,
+                      int diameter1,
+                      const Math::vec2* center2,
+                      int diameter2);
+
 }
 
 

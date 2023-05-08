@@ -116,3 +116,16 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 	printf("%d\n", intersecting_points_count);
 
 }
+
+bool Collide::CircleCircle(const Math::vec2* center1,
+                  int diameter1,
+                  const Math::vec2* center2,
+                  int diameter2)
+{
+    double dist = sqrt(pow(center1->x - center2->x, 2) + pow(center1->y - center2->y, 2));
+    if (dist < diameter1 + diameter2)
+    {
+        return true;
+    }
+    return false;
+}

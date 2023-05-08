@@ -11,6 +11,7 @@
 #include "library.h"
 #include "light.h"
 #include "wall.h"
+#include "footprint.h"
 
 struct Player {
 	Player(Math::vec2 initial_position);
@@ -21,19 +22,24 @@ struct Player {
 				std::vector<Wall*>* walls);
 	void check_shape_mass_collision(std::vector<Shape_mass>* shapes, 
 									std::vector<Math::vec2>* collide_points);
+	void check_footprint_visible(std::vector<Footprint*>* footprints);
 	void check_wall_collision(std::vector<Wall*>* walls, std::vector<Math::vec2>* collide_points);
 	void update(double dt, 
 				std::vector<Shape_mass>* shapes, 
 				std::vector<Math::vec2>* collide_points,
 				bool is_updating_color,
-				std::vector<Wall*>* walls);
+				std::vector<Wall*>* walls,
+				std::vector<Footprint*>* footprints);
 	void draw();
 	Math::vec2 getposition() { return position; }
 
 	void set_position(Math::vec2 coords);
+	void set_lightcolor(enum LightColors color);
 
 private:
 	doodle::Color color = {0, 0, 255, 255};
+
+	enum LightColors lightcolor = WHITE;
 
 	bool colliding = false;
 

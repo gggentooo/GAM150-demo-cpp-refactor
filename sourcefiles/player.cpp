@@ -82,8 +82,28 @@ void Player::check_wall_collision(std::vector<Wall*>* walls, std::vector<Math::v
 	}
 }
 
-void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, bool is_updating_color, std::vector<Wall*>* walls) {
+void Player::check_footprint_visible(std::vector<Footprint*>* footprints)
+{
+	for (int i = 0; i < footprints->size(); ++i)
+	{
+		if (Collide::CirclePoint(&position, LIGHT_SIZE, (*footprints)[i]->return_position()) == true
+			&& lightcolor == *(*footprints)[i]->return_color())
+		{
+			(*footprints)[i]->set_is_visible(true);
+			puts("footprint visible");
+		}
+		else
+			(*footprints)[i]->set_is_visible(false);
+	}
+}
 
+void Player::set_lightcolor(enum LightColors color)
+{
+	lightcolor = color;
+}
+
+void Player::update(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::vec2>* collide_points, bool is_updating_color, std::vector<Wall*>* walls, std::vector<Footprint*>* footprints) {
+	check_footprint_visible(footprints);
 	colliding = false;
 	if (!is_updating_color) {
 		move(dt, shapes, collide_points, walls);

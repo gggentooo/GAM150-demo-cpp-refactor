@@ -14,6 +14,7 @@
 #include "player.h"
 #include "nemo.h"
 #include "anemone.h"
+#include "footprint.h"
 
 #include "../mapdata/Points0.h"
 
@@ -46,6 +47,7 @@ public:
     std::vector<Nemo*> nemos;
     std::vector<Anemone*> anemones;
     std::vector<Wall*> walls;
+    std::vector<Footprint*> footprints;
 
     void check_cleared();
     bool return_cleared() { return cleared; }

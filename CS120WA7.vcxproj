@@ -22,6 +22,7 @@
     <ClCompile Include="sourcefiles\anemone.cpp" />
     <ClCompile Include="sourcefiles\collision.cpp" />
     <ClCompile Include="sourcefiles\filereader.cpp" />
+    <ClCompile Include="sourcefiles\footprint.cpp" />
     <ClCompile Include="sourcefiles\game.cpp" />
     <ClCompile Include="sourcefiles\Input.cpp" />
     <ClCompile Include="sourcefiles\library.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="sourcefiles\anemone.h" />
     <ClInclude Include="sourcefiles\collision.h" />
     <ClInclude Include="sourcefiles\filereader.h" />
+    <ClInclude Include="sourcefiles\footprint.h" />
     <ClInclude Include="sourcefiles\game.h" />
     <ClInclude Include="sourcefiles\Input.h" />
     <ClInclude Include="sourcefiles\library.h" />

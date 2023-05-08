@@ -48,6 +48,21 @@
     <ClCompile Include="sourcefiles\anemone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sourcefiles\stage0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sourcefiles\stage1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sourcefiles\title.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sourcefiles\wall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sourcefiles\footprint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sourcefiles\filereader.h">
@@ -90,6 +105,21 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="sourcefiles\anemone.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sourcefiles\stage0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sourcefiles\stage1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sourcefiles\title.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sourcefiles\wall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sourcefiles\footprint.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
