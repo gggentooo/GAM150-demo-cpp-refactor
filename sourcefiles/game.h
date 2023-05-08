@@ -37,7 +37,7 @@ public:
 private:
 	CS230::Input input;
 	bool title_on = true;
-	int current_stage = 0;
+	int current_stage = 1;
 	bool did_initialize = false;
 	Title* title = new Title();
 	Stage0* stage0 = new Stage0();

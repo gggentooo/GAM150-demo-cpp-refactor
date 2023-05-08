@@ -11,7 +11,7 @@ Wall::Wall(Math::vec2 point1, Math::vec2 point2, enum LightColors color) : point
 {
 	switch (color) {
 	case WHITE:
-		doodlecolor = { 255,255,255,0 };
+		doodlecolor = { 255,255,255, 255 };
 		break;
 	case RED:
 		doodlecolor = { 255, 0, 255, 255 };

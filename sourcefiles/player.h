@@ -57,7 +57,7 @@ private:
 	static constexpr int brake_margin = 30;
 	Math::vec2 velocity = { 0, 0 };
 
-	static constexpr int size = 150;
+	static constexpr int size = 150; // 150
 
 };
 

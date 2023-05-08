@@ -15,7 +15,7 @@ bool Collide::CirclePoint(const Math::vec2* center,
 {
 	double dx = center->x - point->x;
 	double dy = center->y - point->y;
-	double dist = sqrt(pow(dx, 2) + (dy, 2));
+	double dist = sqrt(pow(dx, 2) + pow(dy, 2));
 
 	if (dist <= diameter / 2) {
 		return true;
@@ -115,6 +115,18 @@ bool Collide::CircleLine(	const Math::vec2* center_p,
 
 	printf("%d\n", intersecting_points_count);
 
+}
+
+Math::vec2 Collide::CircleLineDirections(const Math::vec2* center_p, int diameter, const Math::vec2* point1_p, const Math::vec2* point2_p)
+{
+	Math::vec2 center = *center_p, point1 = *point1_p, point2 = *point2_p;
+	double line_len = sqrt(pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2));
+	double dot = ((center.x - point1.x) * (point2.x - point1.x) + (center.y - point1.y) * (point2.y - point1.y)) / pow(line_len, 2);
+	Math::vec2 closest_point = { point1.x + dot * (point2.x - point1.x), point1.y + dot * (point2.y - point1.y) };
+	bool x = closest_point.x < center.x ? 0 : 1;
+	bool y = closest_point.y < center.y ? 0 : 1;
+
+	return (Math::vec2{ static_cast<double>(x), static_cast<double>(y) });
 }
 
 bool Collide::CircleCircle(const Math::vec2* center1,

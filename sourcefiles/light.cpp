@@ -142,10 +142,10 @@ void Light::draw(std::vector<Math::vec2>* collide_points)
 	doodle::set_fill_color(color);
 	doodle::draw_ellipse(position.x, position.y, size, size);
 
-	doodle::set_outline_color(255, 255, 0, 80);
-	for (int i = 0; i < (*collide_points).size(); ++i) {
-		doodle::draw_line(position.x, position.y, (*collide_points)[i].x, (*collide_points)[i].y);
-	}
+	//doodle::set_outline_color(255, 255, 0, 80);
+	//for (int i = 0; i < (*collide_points).size(); ++i) {
+	//	doodle::draw_line(position.x, position.y, (*collide_points)[i].x, (*collide_points)[i].y);
+	//}
 
 	if (is_updating_color)
 		draw_wheel();

@@ -22,8 +22,8 @@ int main() {
     while (!doodle::is_window_closed())
     {
         doodle::update_window();
-        game.update();
         game.draw();
+        game.update();
         if (game.return_thankyou_timer() >= 2)
             return 0;
     }

@@ -25,21 +25,28 @@ void Player::move(double dt, std::vector<Shape_mass>* shapes, std::vector<Math::
 		velocity = { 0, 0 };
 	}
 
-	position.x += velocity.x * dt;
+	//position.x += velocity.x * dt;
+	//check_shape_mass_collision(shapes, collide_points);
+	//check_wall_collision(walls, collide_points);
+	//if (colliding) {
+	//	position.x = prev_position.x;
+	//	colliding = false;
+	//}
+	//position.y += velocity.y * dt;
+	//check_shape_mass_collision(shapes, collide_points);
+	//check_wall_collision(walls, collide_points);
+	//if (colliding) {
+	//	position.y = prev_position.y;
+	//	colliding = false;
+	//}
+
+	position += velocity * dt;
 	check_shape_mass_collision(shapes, collide_points);
 	check_wall_collision(walls, collide_points);
 	if (colliding) {
-		position.x = prev_position.x;
+		position = prev_position;
 		colliding = false;
 	}
-	position.y += velocity.y * dt;
-	check_shape_mass_collision(shapes, collide_points);
-	check_wall_collision(walls, collide_points);
-	if (colliding) {
-		position.y = prev_position.y;
-		colliding = false;
-	}
-	
 
 }
 
@@ -75,7 +82,11 @@ void Player::check_wall_collision(std::vector<Wall*>* walls, std::vector<Math::v
 			Math::vec2 point2 = (*walls)[i]->return_point2();
 			if (Collide::CircleLine(&position, size, &point1, &point2, collide_points))
 			{
-				puts("colliding with wall");
+				//puts("colliding with wall");
+				doodle::push_settings();
+				doodle::set_outline_color(255, 255, 0, 255);
+				doodle::draw_line(point1.x, point1.y, point2.x, point2.y);
+				doodle::pop_settings();
 				colliding = true;
 			}
 		}
@@ -93,7 +104,7 @@ void Player::check_footprint_visible(std::vector<Footprint*>* footprints)
 			puts("footprint visible");
 		}
 		else
-			(*footprints)[i]->set_is_visible(false);
+			(*footprints)[i]->set_is_visible(true);
 	}
 }
 
