@@ -11,10 +11,10 @@
 Stage1::Stage1()
 {
 	double start = 0;
-	double x = 80; // 420
+	double x = 420; // 420
 	camera->SetLimit({ 0, 0 }, { x * 10, x * 10 });
 	int istart = 0;
-	int ix = 80; // 420
+	int ix = 420; // 420
 	clear_point = { start + x * 10, start + x * 1.5 };
 	walls.push_back(new Wall({ start,start }, { start + x * 10, start }, WHITE));
 	walls.push_back(new Wall({ start,start }, { start, start + x * 10 }, WHITE));
@@ -104,7 +104,7 @@ Stage1::Stage1()
 		int ry = (rand() % ix - (ix / 2)) / 2;
 		footprints.push_back(new Footprint({ start + x * (3.5) + rx, start + x * (2 + i / 2) + ry }, GREEN));
 	}
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 15; ++i)
 	{
 		int rx = (rand() % ix - (ix / 2)) / 2;
 		int ry = (rand() % ix - (ix / 2)) / 2;
@@ -142,7 +142,7 @@ Stage1::Stage1()
 		int ry = (rand() % ix - (ix / 2)) / 2;
 		footprints.push_back(new Footprint({ start + x * (2.5 + i / 5) + rx, start + x * 8.5 + ry }, RED));
 	}
-	anemones.push_back(new Anemone({ start + x * 8.7, start + x * 7.8 }, GREEN));
+	anemones.push_back(new Anemone({ start + x * 8.5, start + x * 7.8 }, GREEN));
 	for (int i = 0; i < 25; ++i)
 	{
 		int rx = (rand() % ix - (ix / 2)) / 2;
@@ -160,6 +160,53 @@ Stage1::Stage1()
 		int rx = (rand() % ix - (ix / 2)) / 2;
 		int ry = (rand() % ix - (ix / 2)) / 2;
 		footprints.push_back(new Footprint({ start + x * 4.5 + rx, start + x * (4.5 + i / 5) + ry }, GREEN));
+	}
+	anemones.push_back(new Anemone({ start + x * 6.2, start + x * 4.5 }, RED));
+	anemones.push_back(new Anemone({ start + x * 6.5, start + x * 4 }, GREEN));
+	anemones.push_back(new Anemone({ start + x * 6.7, start + x * 4.2 }, BLUE));
+	for (int i = 0; i < 15; ++i)
+	{
+		int rx = (rand() % ix - (ix / 2)) / 2;
+		int ry = (rand() % ix - (ix / 2)) / 2;
+		footprints.push_back(new Footprint({ start + x * 6.5 + rx, start + x * (4.5 + i / 5) + ry }, BLUE));
+	}
+	for (int i = 0; i < 20; ++i)
+	{
+		int rx = (rand() % ix - (ix / 2)) / 2;
+		int ry = (rand() % ix - (ix / 2)) / 2;
+		footprints.push_back(new Footprint({ start + x * (7.5 + i / 5) + rx, start + x * 5.5 + ry }, BLUE));
+	}
+	for (int i = 0; i < 10; ++i)
+	{
+		int rx = (rand() % ix - (ix / 2)) / 2;
+		int ry = (rand() % ix - (ix / 2)) / 2;
+		footprints.push_back(new Footprint({ start + x * 8.5 + rx, start + x * (2.5 + i / 5) + ry }, BLUE));
+	}
+	for (int i = 0; i < 15; ++i)
+	{
+		int rx = (rand() % ix - (ix / 2)) / 2;
+		int ry = (rand() % ix - (ix / 2)) / 2;
+		footprints.push_back(new Footprint({ start + x * (6.5 + i / 5) + rx, start + x * 2.5 + ry }, BLUE));
+	}
+	for (int i = 0; i < 10; ++i)
+	{
+		int rx = (rand() % ix - (ix / 2)) / 2;
+		int ry = (rand() % ix - (ix / 2)) / 2;
+		footprints.push_back(new Footprint({ start + x * (5.5 + i / 5) + rx, start + x * 1.5 + ry }, BLUE));
+	}
+	anemones.push_back(new Anemone({ start + x * 5.5, start + x * 1.5 }, BLUE));
+	anemones.push_back(new Anemone({ start + x * 8.5, start + x * 2.8 }, RED));
+	for (int i = 0; i < 10; ++i)
+	{
+		int rx = (rand() % ix - (ix / 2)) / 2;
+		int ry = (rand() % ix - (ix / 2)) / 2;
+		footprints.push_back(new Footprint({ start + x * 9.5 + rx, start + x * (2.5 + i / 5) + ry }, RED));
+	}
+	for (int i = 0; i < 20; ++i)
+	{
+		int rx = (rand() % ix - (ix / 2)) / 2;
+		int ry = (rand() % ix - (ix / 2)) / 2;
+		footprints.push_back(new Footprint({ start + x * (6.5 + i / 5) + rx, start + x * 2.5 + ry}, RED));
 	}
 }
 
@@ -217,6 +264,17 @@ void Stage1::update() {
 		light_pie_points.push_back(collide_points[i]);
 	}
 	doodle::pop_settings();
+	if (timer > 0)
+		timer -= doodle::DeltaTime;
+	if (timer <= 0 && didreveal == false)
+	{
+		timer = 0;
+		for (int i = 0; i < walls.size(); ++i)
+		{
+			walls[i]->reveal();
+		}
+		didreveal = true;
+	}
 }
 
 void Stage1::draw()
@@ -252,4 +310,7 @@ void Stage1::draw()
 	doodle::draw_ellipse(clear_point.x, clear_point.y, clear_point_size, clear_point_size);
 
 	doodle::pop_settings();
+
+	doodle::draw_text("Time: ", 0, 0);
+	doodle::draw_text(std::to_string(static_cast<int>(timer)), 100, 0);
 }

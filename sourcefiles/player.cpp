@@ -104,7 +104,7 @@ void Player::check_footprint_visible(std::vector<Footprint*>* footprints)
 			puts("footprint visible");
 		}
 		else
-			(*footprints)[i]->set_is_visible(true);
+			(*footprints)[i]->set_is_visible(false);
 	}
 }
 

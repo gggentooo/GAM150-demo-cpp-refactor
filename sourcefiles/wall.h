@@ -20,6 +20,7 @@ public:
 	Math::vec2 return_point2() { return point2; }
 	void set_is_active(bool value);
 	void draw();
+	void reveal() { doodlecolor = { 255, 255, 255, 120 }; }
 
 private:
 	Math::vec2 point1;

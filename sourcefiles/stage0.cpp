@@ -37,12 +37,12 @@ void Stage0::load_shape_masses()
 {
 	std::vector<Point> temp_points;
 	for (int j = 0; j < shape_count; ++j) {
-
-		for (int i = 0; i < all_shape_points.size(); ++i) { 
+		for (int i = 0; i < all_shape_points.size(); ++i) {
 			if (all_shape_points[i].shape_no == j) {
 				temp_points.push_back(all_shape_points[i]);
-				temp_points[i].position = temp_points[i].position * 3;
-			} 
+				Point& added_point = temp_points.back(); // get a reference to the most recently added point
+				added_point.position *= 3; // modify its position
+			}
 		}
 		Shape_mass temp_shape_mass(temp_points, temp_points.size(), j);
 		shape_masses.push_back(temp_shape_mass);

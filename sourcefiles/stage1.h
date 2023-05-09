@@ -59,6 +59,8 @@ private:
 
     CS230::Input input;
 
+    double timer = 100;
+
     Player* player = new Player({ 100, 100 });
     Light* light = new Light({ 100, 100 });
     Camera* camera = new Camera({ 427, 240 }, { 853, 480 });
@@ -66,6 +68,7 @@ private:
     Math::vec2 clear_point = { 1280 * 3, 720 * 3 };
     int clear_point_size = 100;
     bool cleared = false;
+    bool didreveal = false;
 };
 
 #endif

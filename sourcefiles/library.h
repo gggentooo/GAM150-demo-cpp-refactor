@@ -8,7 +8,7 @@
 #include <doodle/doodle.hpp>
 #include "Vec2.h"
 
-#define WINDOW_TITLE	"GAM150 Guyot prototype"
+#define WINDOW_TITLE	"GAM150 Guyot prototype - Playtest #2"
 #define WINDOW_WIDTH	1280
 #define WINDOW_HEIGHT	720
 #define angle_zero		{1, 0}
